@@ -194,7 +194,7 @@ footer{padding:34px 0 60px;text-align:center;font-size:.82rem;opacity:.45}
     <p class="volume">Saga I — Em Busca da Centelha Perdida</p>
 
     <button class="mapa" id="mapa-canonico" aria-label="Ampliar o mapa de Átnor">
-      <img src="img/mapa/atnor-m.webp" alt="Mapa canônico de Átnor" width="600" height="900" fetchpriority="high">
+      <img src="./atnor-m.webp" alt="Mapa canônico de Átnor" width="600" height="900" fetchpriority="high">
       <span class="mapa-selo">O mapa que você procura é você</span>
     </button>
   </div>
@@ -264,62 +264,48 @@ const CLOUD_NAME = "astlwodb";
 const ACERVO = [
 
   /* ---------- PERSONAGENS ---------- */
-  {tipo:"personagem", img:"img/personagens/auron-sollis", nome:"Auron Sollis",
-   papel:"O cartógrafo", nota:"Aquele que desenha o caminho enquanto o percorre."},
-  {tipo:"personagem", img:"img/personagens/serena-luminara", nome:"Serena Luminara",
-   papel:"Coprotagonista", nota:""},
-
-  /* guardiões — a ordem canônica dos três primeiros está travada */
-  {tipo:"personagem", img:"img/personagens/kaelen-om", nome:"Kaelen Ôm",
-   papel:"Primeiro guardião", nota:""},
-  {tipo:"personagem", img:"img/personagens/vidya-smriti", nome:"Vidya Smriti",
-   papel:"Segunda guardiã", nota:""},
-  {tipo:"personagem", img:"img/personagens/shalim", nome:"Shalim",
-   papel:"Terceiro guardião · ה", nota:""},
-  {tipo:"personagem", img:"img/personagens/rohan-prana", nome:"Rohan Prana", papel:"", nota:""},
-  {tipo:"personagem", img:"img/personagens/sila-anahata", nome:"Sila Anahata", papel:"", nota:""},
-  {tipo:"personagem", img:"img/personagens/dhara-moksha", nome:"Dhara Moksha", papel:"", nota:""},
-  {tipo:"personagem", img:"img/personagens/ignis-darshan", nome:"Ignis Darshan", papel:"", nota:""},
-  {tipo:"personagem", img:"img/personagens/jyoti-nirvana", nome:"Jyoti Nirvana", papel:"", nota:""},
-  {tipo:"personagem", img:"img/personagens/kriya-akanda", nome:"Kriya Akanda", papel:"", nota:""},
-  {tipo:"personagem", img:"img/personagens/maya-akasa", nome:"Maya Akasa", papel:"", nota:""},
-  {tipo:"personagem", img:"img/personagens/vayu-sutrata", nome:"Vayú Sutrata", papel:"", nota:""},
-  {tipo:"personagem", img:"", nome:"Décimo segundo guardião", papel:"", nota:""},
-
-  /* aldeia e caminho */
-  {tipo:"personagem", img:"img/personagens/dona-mira", nome:"Dona Mira", papel:"", nota:""},
-  {tipo:"personagem", img:"img/personagens/liam", nome:"Liam", papel:"", nota:""},
-  {tipo:"personagem", img:"img/personagens/theron", nome:"Theron", papel:"", nota:""},
-
-  /* antagonistas */
-  {tipo:"personagem", img:"img/personagens/mara-vikalpa", nome:"Mára Vikalpa",
-   papel:"Antagonista", nota:""},
-  {tipo:"personagem", img:"img/personagens/rita-vritta", nome:"Rita Vritta",
-   papel:"Antagonista", nota:""},
-  {tipo:"personagem", img:"img/personagens/kali-dvesha", nome:"Kali Dvesha", papel:"", nota:""},
-  {tipo:"personagem", img:"img/personagens/tamas-nidra", nome:"Tamas Nidra", papel:"", nota:""},
-  {tipo:"personagem", img:"img/personagens/durga-aham-1", nome:"Durga Aham",
-   papel:"Primeira aparição", nota:""},
-  {tipo:"personagem", img:"img/personagens/durga-aham-2", nome:"Durga Aham",
-   papel:"Segunda aparição", nota:""},
+  {tipo:"personagem", img:"./auron-sollis", nome:"Auron Solis"},
+  {tipo:"personagem", img:"./serena-luminara", nome:"Serena Luminara"},
+  {tipo:"personagem", img:"./kaelen-om", nome:"Kaelen Ôm"},
+  {tipo:"personagem", img:"./theron", nome:"Theron"},
+  {tipo:"personagem", img:"./shalim", nome:"Shalim"},
+  {tipo:"personagem", img:"./vidya-smriti", nome:"Vidya Sutra"},
+  {tipo:"personagem", img:"./rohan-prana", nome:"Rohan Prana"},
+  {tipo:"personagem", img:"./sila-anahata", nome:"Sila Anahata"},
+  {tipo:"personagem", img:"./dhara-moksha", nome:"Dhara Moksha"},
+  {tipo:"personagem", img:"./ignis-darshan", nome:"Ignis Darshan"},
+  {tipo:"personagem", img:"./jyoti-nirvana", nome:"Jyothi Nirvana"},
+  {tipo:"personagem", img:"./kriya-akanda", nome:"Kriya Akanda"},
+  {tipo:"personagem", img:"./maya-akasa", nome:"Maya Akasa"},
+  {tipo:"personagem", img:"./vayu-sutrata", nome:"Vayú Sutrata"},
+  {tipo:"personagem", img:"./mara-vikalpa", nome:"Mára Vikalpa"},
+  {tipo:"personagem", img:"./durga-aham-1", nome:"Durga Aham"},
+  {tipo:"personagem", img:"./durga-aham-2", nome:"Durga Aham"},
+  {tipo:"personagem", img:"./tamas-nidra", nome:"Tamas Nidra"},
+  {tipo:"personagem", img:"./rita-vritta", nome:"Rita Vritta"},
+  {tipo:"personagem", img:"./kali-dvesha", nome:"Kali Dvesha"},
+  {tipo:"personagem", img:"", nome:"Samsara"},
+  {tipo:"personagem", img:"./dona-mira", nome:"Dona Mira"},
+  {tipo:"personagem", img:"./liam", nome:"Lian"},
+  {tipo:"personagem", img:"", nome:"A mãe de Auron"},
 
   /* ---------- CAPÍTULOS (13 lâminas, 12 números) ---------- */
-  {tipo:"capitulo", img:"img/capitulos/cap-01", numeral:"I", nome:"O Chamado da Fenda Interior", nota:""},
-  {tipo:"capitulo", img:"img/capitulos/cap-02", numeral:"II", nome:"O Silêncio que Escuta", nota:""},
-  {tipo:"capitulo", img:"img/capitulos/cap-02b", numeral:"II-B", nome:"O Canto que Faz",
+  {tipo:"capitulo", img:"./cap-01", numeral:"I", nome:"O Chamado da Fenda Interior", nota:""},
+  {tipo:"capitulo", img:"./cap-02", numeral:"II", nome:"O Silêncio que Escuta", nota:""},
+  {tipo:"capitulo", img:"./cap-02b", numeral:"II-B", nome:"O Canto que Faz",
    nota:"Veridiana — a jornada continua", semNumero:true},
-  {tipo:"capitulo", img:"img/capitulos/cap-03", numeral:"III", nome:"O Mapa dos Arquétipos", nota:""},
-  {tipo:"capitulo", img:"img/capitulos/cap-04", numeral:"IV", nome:"A Chama que Queima Ilusões", nota:""},
-  {tipo:"capitulo", img:"img/capitulos/cap-05", numeral:"V", nome:"O Sonho que Sonha o Sonhador", nota:""},
-  {tipo:"capitulo", img:"img/capitulos/cap-06", numeral:"VI", nome:"A Brincadeira Sagrada", nota:""},
-  {tipo:"capitulo", img:"img/capitulos/cap-07", numeral:"VII", nome:"A Montanha que Não Fala", nota:""},
-  {tipo:"capitulo", img:"img/capitulos/cap-08", numeral:"VIII", nome:"O Átomo Divino em Todos", nota:""},
-  {tipo:"capitulo", img:"img/capitulos/cap-09", numeral:"IX", nome:"O Serviço Anônimo",
+  {tipo:"capitulo", img:"./cap-03", numeral:"III", nome:"O Mapa dos Arquétipos", nota:""},
+  {tipo:"capitulo", img:"./cap-04", numeral:"IV", nome:"A Chama que Queima Ilusões", nota:""},
+  {tipo:"capitulo", img:"./cap-05", numeral:"V", nome:"O Sonho que Sonha o Sonhador", nota:""},
+  {tipo:"capitulo", img:"./cap-06", numeral:"VI", nome:"A Brincadeira Sagrada", nota:""},
+  {tipo:"capitulo", img:"./cap-07", numeral:"VII", nome:"A Montanha que Não Fala", nota:""},
+  {tipo:"capitulo", img:"./cap-08", numeral:"VIII", nome:"O Átomo Divino em Todos", nota:""},
+  {tipo:"capitulo", img:"./cap-09", numeral:"IX", nome:"O Serviço Anônimo",
    nota:"Vila do Karma Repetido"},
-  {tipo:"capitulo", img:"img/capitulos/cap-10", numeral:"X", nome:"A Palavra que Faltava", nota:""},
-  {tipo:"capitulo", img:"img/capitulos/cap-11", numeral:"XI", nome:"O Despertar da Serpente",
+  {tipo:"capitulo", img:"./cap-10", numeral:"X", nome:"A Palavra que Faltava", nota:""},
+  {tipo:"capitulo", img:"./cap-11", numeral:"XI", nome:"O Despertar da Serpente",
    nota:"Abismo Silencioso"},
-  {tipo:"capitulo", img:"img/capitulos/cap-12", numeral:"XII", nome:"O Retorno ao Silêncio (e à Cidade)",
+  {tipo:"capitulo", img:"./cap-12", numeral:"XII", nome:"O Retorno ao Silêncio (e à Cidade)",
    nota:"Veridiana — a jornada continua"},
 
   /* ---------- CENAS ---------- */
@@ -333,8 +319,8 @@ const ACERVO = [
    3) MOTOR — normalmente não precisa mexer daqui para baixo
    ===================================================================== */
 const TEXTOS = {
-  personagem:{eyebrow:"Doze guardiões, um cartógrafo",
-    texto:"Quem Auron encontra no caminho: os guardiões que ensinam, os que confundem e os instrumentos de Átnor."},
+  personagem:{eyebrow:"Guardiões, tentadores e o cartógrafo",
+    texto:"Quem Auron encontra no caminho: os guardiões que ensinam e os tentadores que oferecem atalhos."},
   capitulo:{eyebrow:"As lâminas do caminho",
     texto:"Uma lâmina para cada capítulo. Toque em um assento da Roda para ir direto à lâmina."},
   cena:{eyebrow:"Momentos de Átnor",
@@ -356,19 +342,7 @@ let indiceAtual = 0;
 
 function render(tipo){
   tipoAtivo = tipo;
-  document.getElementById("mapa-canonico").addEventListener("click", () => {
-  document.getElementById("visor-img").src = "img/mapa/atnor-g.webp";
-  document.getElementById("visor-img").alt = "Mapa canônico de Átnor";
-  document.getElementById("visor-numeral").textContent = "Átnor";
-  document.getElementById("visor-titulo").textContent = "O mapa canônico";
-  document.getElementById("visor-nota").textContent = "O mapa que você procura é você.";
-  visiveis = [];                       // fora da grade: sem ← →
-  visor.setAttribute("open","");
-  document.body.style.overflow = "hidden";
-  document.getElementById("fechar").focus();
-});
-
-document.querySelectorAll(".aba").forEach(b =>
+  document.querySelectorAll(".aba").forEach(b =>
     b.setAttribute("aria-selected", String(b.dataset.tipo === tipo)));
   document.getElementById("secao-eyebrow").textContent = TEXTOS[tipo].eyebrow;
   document.getElementById("secao-texto").textContent = TEXTOS[tipo].texto;
@@ -495,7 +469,7 @@ visor.addEventListener("touchend", e => {
 }, {passive:true});
 
 document.getElementById("mapa-canonico").addEventListener("click", () => {
-  document.getElementById("visor-img").src = "img/mapa/atnor-g.webp";
+  document.getElementById("visor-img").src = "./atnor-g.webp";
   document.getElementById("visor-img").alt = "Mapa canônico de Átnor";
   document.getElementById("visor-numeral").textContent = "Átnor";
   document.getElementById("visor-titulo").textContent = "O mapa canônico";

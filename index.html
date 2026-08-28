@@ -1,1 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Mapa de Átnor · A Saga da Fenda Interior</title>
+<meta name="description" content="O mapa de Átnor em alta resolução, desenhado por Auron Sollis. Gratuito.">
+<meta name="theme-color" content="#F7F4D4">
+<link rel="canonical" href="https://rfelipepsi.github.io/mapa-de-atnor/">
 
+<!-- compartilhamento em WhatsApp, Instagram, Facebook, X -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="A Saga da Fenda Interior">
+<meta property="og:url" content="https://rfelipepsi.github.io/mapa-de-atnor/">
+<meta property="og:title" content="O Mapa de Átnor">
+<meta property="og:description" content="As doze estações, o deserto onde o tempo não passa, a vila que repete o mesmo dia. O mapa que Auron Sollis desenhou para quem viesse depois — gratuito.">
+<meta property="og:image" content="https://rfelipepsi.github.io/mapa-de-atnor/capa.jpg">
+<meta property="og:image:alt" content="Capa de Em Busca da Centelha Perdida, de Lior Leal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="O Mapa de Átnor">
+<meta name="twitter:description" content="O mapa que Auron Sollis desenhou para quem viesse depois. Gratuito.">
+<meta name="twitter:image" content="https://rfelipepsi.github.io/mapa-de-atnor/capa.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchment:#F7F4D4;
+    --parchment-deep:#EFEAC2;
+    --gold:#9A6B24;
+    --gold-soft:#C09A5E;
+    --ink:#1C1710;
+    --ink-soft:#5E4E33;
+    --rule:rgba(154,107,36,.28);
+    --measure:34rem;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'EB Garamond',Georgia,serif;
+    font-size:19px;line-height:1.62;
+    min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;
+    padding:clamp(1.5rem,5vw,4rem) 1.25rem clamp(3rem,6vw,5rem);
+    position:relative;overflow-x:hidden;
+  }
+
+  /* graticule — as linhas de um mapa por baixo de tudo */
+  .graticule{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    opacity:.13;
+  }
+
+  .sheet{position:relative;z-index:1;width:100%;max-width:var(--measure)}
+
+  /* ---- cartouche: o elemento-assinatura ---- */
+  .cartouche{position:relative;padding:clamp(2.2rem,7vw,3.4rem) clamp(1.4rem,5vw,2.6rem);text-align:center}
+  .cartouche-frame{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  .cartouche-frame path,.cartouche-frame line{
+    fill:none;stroke:var(--gold);stroke-width:1.1;
+    stroke-dasharray:var(--len);stroke-dashoffset:var(--len);
+    animation:draw 2.4s cubic-bezier(.5,.05,.2,1) forwards;
+  }
+  .cartouche-frame .inner{stroke-width:.5;stroke:var(--gold-soft);animation-delay:.5s}
+  @keyframes draw{to{stroke-dashoffset:0}}
+
+  .eyebrow{
+    font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.42em;
+    color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem;
+    text-indent:.42em;
+  }
+  h1{font-family:'Cinzel',serif;font-weight:500;line-height:1.1;color:var(--ink)}
+  h1 .sm{
+    display:block;font-size:clamp(.82rem,3.4vw,1.05rem);font-weight:400;
+    letter-spacing:.34em;text-indent:.34em;color:var(--ink-soft);
+    margin-bottom:.42em;
+  }
+  h1 .em{
+    display:block;color:var(--gold);font-weight:600;
+    font-size:clamp(2.3rem,11vw,3.9rem);
+    letter-spacing:.14em;text-indent:.14em;
+  }
+  .lozenge{color:var(--gold);font-size:.7rem;margin:1.5rem 0 0;letter-spacing:1.2em;text-indent:1.2em}
+
+  /* ---- corpo ---- */
+  .prose{margin-top:clamp(2.5rem,7vw,3.5rem)}
+  .prose p{margin-bottom:1.15rem}
+  .lede{font-size:1.16em;line-height:1.5}
+  .lede em{color:var(--gold);font-style:italic}
+
+  /* ---- o que vem junto: legenda de mapa ---- */
+  .legend{margin:clamp(2.5rem,7vw,3.25rem) 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:.4rem 0}
+  .legend-item{display:flex;gap:1.15rem;align-items:baseline;padding:1.05rem .25rem;border-bottom:1px solid var(--rule)}
+  .legend-item:last-child{border-bottom:0}
+  .legend-key{
+    font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.2em;color:var(--gold);
+    flex:0 0 2.4rem;padding-top:.28em;
+  }
+  .legend-body strong{display:block;font-weight:500;letter-spacing:.01em}
+  .legend-body span{color:var(--ink-soft);font-size:.94em}
+
+  /* ---- formulário ---- */
+  .capture{margin-top:.5rem}
+  .capture label{
+    display:block;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.26em;
+    color:var(--gold);text-transform:uppercase;margin-bottom:.7rem;text-indent:.26em;
+  }
+  .field{display:flex;flex-wrap:wrap;gap:.7rem}
+  input[type=email]{
+    flex:1 1 15rem;min-width:0;
+    font-family:'EB Garamond',serif;font-size:1.02rem;color:var(--ink);
+    background:rgba(255,255,255,.5);
+    border:1px solid var(--gold-soft);border-radius:2px;
+    padding:.82rem 1rem;transition:border-color .2s,background .2s;
+  }
+  input[type=email]::placeholder{color:#A99B78}
+  input[type=email]:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.85)}
+  input[type=email]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  button{
+    flex:0 0 auto;cursor:pointer;
+    font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;text-indent:.2em;
+    text-transform:uppercase;color:var(--parchment);background:var(--gold);
+    border:1px solid var(--gold);border-radius:2px;padding:.95rem 1.7rem;
+    transition:background .2s,transform .12s;
+  }
+  button:hover{background:#83591B}
+  button:active{transform:translateY(1px)}
+  button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .fineprint{margin-top:.95rem;font-size:.86em;color:var(--ink-soft);font-style:italic}
+  .error{margin-top:.7rem;font-size:.9em;color:#8C2F1D;display:none}
+  .error.show{display:block}
+
+  .done{display:none;text-align:center;padding:1.5rem 0}
+  .done.show{display:block;animation:fade .5s ease both}
+  .done .mark{font-family:'Cinzel',serif;color:var(--gold);font-size:1.1rem;letter-spacing:.24em;text-indent:.24em;margin-bottom:.85rem}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* ---- passagem para a galeria ---- */
+  .galeria{
+    display:flex;align-items:center;gap:1.15rem;
+    margin-top:clamp(2.5rem,7vw,3.25rem);padding:1.15rem 0 0;
+    border-top:1px solid var(--rule);
+    text-decoration:none;color:inherit;
+  }
+  .galeria img{
+    width:76px;height:114px;object-fit:cover;flex:0 0 auto;display:block;
+    border:1px solid var(--gold-soft);transition:border-color .2s;
+  }
+  .galeria .rot{
+    font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.26em;text-indent:.26em;
+    text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem;
+  }
+  .galeria strong{display:block;font-weight:500;margin-bottom:.3rem;transition:color .2s}
+  .galeria .sub{display:block;color:var(--ink-soft);font-size:.92em;font-style:italic}
+  .galeria:hover img{border-color:var(--gold)}
+  .galeria:hover strong{color:var(--gold)}
+  .galeria:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+
+  footer{
+    margin-top:clamp(3rem,8vw,4.5rem);padding-top:1.6rem;border-top:1px solid var(--rule);
+    text-align:center;font-size:.82em;color:var(--ink-soft);line-height:1.9;
+  }
+  footer .name{font-family:'Cinzel',serif;letter-spacing:.22em;text-indent:.22em;color:var(--gold);font-size:.72rem}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    .cartouche-frame path,.cartouche-frame line{stroke-dashoffset:0}
+  }
+</style>
+</head>
+<body>
+
+<svg class="graticule" aria-hidden="true" preserveAspectRatio="none">
+  <defs>
+    <pattern id="grid" width="88" height="88" patternUnits="userSpaceOnUse">
+      <path d="M88 0H0V88" fill="none" stroke="#9A6B24" stroke-width=".7"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+</svg>
+
+<main class="sheet">
+
+  <section class="cartouche">
+    <svg class="cartouche-frame" viewBox="0 0 400 260" preserveAspectRatio="none" aria-hidden="true">
+      <path style="--len:1400" d="M14,44 L14,14 L44,14 M356,14 L386,14 L386,44 M386,216 L386,246 L356,246 M44,246 L14,246 L14,216"/>
+      <line style="--len:400" class="inner" x1="24" y1="24" x2="376" y2="24"/>
+      <line style="--len:400" class="inner" x1="24" y1="236" x2="376" y2="236"/>
+    </svg>
+
+    <p class="eyebrow">A Saga da Fenda Interior</p>
+    <h1><span class="sm">O Mapa de</span><span class="em">Átnor</span></h1>
+    <p class="lozenge">◆</p>
+  </section>
+
+  <div class="prose">
+    <p class="lede">Auron Sollis passou a vida desenhando cartas de lugares que existem. O mapa que importava, ele só traçou <em>depois</em> — e não para si.</p>
+    <p>Desenhou para quem viesse em seguida. Não fazia sentido guardá-lo.</p>
+  </div>
+
+  <section class="legend" aria-label="O que você recebe">
+    <div class="legend-item">
+      <span class="legend-key">I</span>
+      <span class="legend-body">
+        <strong>O mapa de Átnor, em alta resolução</strong>
+        <span>As doze estações, o deserto onde o tempo não passa, a vila que repete o mesmo dia.</span>
+      </span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-key">II</span>
+      <span class="legend-body">
+        <strong>O primeiro capítulo, na íntegra</strong>
+        <span>Para ler antes de decidir se a travessia é sua.</span>
+      </span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-key">III</span>
+      <span class="legend-body">
+        <strong>Aviso quando o Livro II sair</strong>
+        <span>Está sendo escrito. Você saberá antes da loja.</span>
+      </span>
+    </div>
+  </section>
+
+  <section class="capture">
+    <!-- Formulário conectado ao MailerLite (conta 2597145). Para trocar de
+         serviço, substitua o action e confira o name do campo de e-mail. -->
+    <form id="form" action="https://assets.mailerlite.com/jsonp/2597145/forms/196833172268255113/subscribe" method="post" target="_blank" novalidate>
+      <label for="email">Onde envio o mapa</label>
+      <div class="field">
+        <input id="email" type="email" name="fields[email]" placeholder="seu@email.com" autocomplete="email" required>
+        <button type="submit">Receber o mapa</button>
+      </div>
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
+      <p class="error" id="err">Confira o endereço — parece faltar alguma coisa.</p>
+      <p class="fineprint">Só o mapa, o capítulo e o aviso do Livro II. Nada mais. Você sai da lista quando quiser.</p>
+    </form>
+
+    <div class="done" id="done">
+      <p class="mark">◆</p>
+      <p>O mapa está a caminho. Se não chegar em alguns minutos, olhe a caixa de promoções — cartógrafos costumam cair lá.</p>
+    </div>
+  </section>
+
+  <a class="galeria" href="galeria.html">
+    <img src="atnor-m.webp" alt="Mapa de Átnor" width="76" height="114" loading="lazy">
+    <span>
+      <span class="rot">Galeria de Átnor</span>
+      <strong>Conheça o mundo antes de entrar nele</strong>
+      <span class="sub">Os guardiões, os tentadores e as treze lâminas dos capítulos.</span>
+    </span>
+  </a>
+
+  <footer>
+    <p class="name">Lior Leal</p>
+    <p>Em Busca da Centelha Perdida · Livro I<br>ISBN 978-65-02-32392-2</p>
+  </footer>
+
+</main>
+
+<script>
+  const form = document.getElementById('form');
+  const done = document.getElementById('done');
+  const err  = document.getElementById('err');
+  const mail = document.getElementById('email');
+
+  mail.addEventListener('input', () => err.classList.remove('show'));
+
+  form.addEventListener('submit', (e) => {
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value.trim());
+    if (!valid) { e.preventDefault(); err.classList.add('show'); mail.focus(); return; }
+    // Envia ao MailerLite numa aba nova e mostra a confirmação aqui.
+    setTimeout(() => { form.style.display = 'none'; done.classList.add('show'); }, 150);
+  });
+</script>
+</body>
+</html>

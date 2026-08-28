@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galeria de Átnor — A Saga da Fenda Interior</title>
+<meta name="description" content="Retratos dos guardiões, lâminas dos capítulos e cenas de Átnor — o mundo de A Saga da Fenda Interior, de Lior Leal.">
+
+<meta property="og:title" content="Galeria de Átnor — A Saga da Fenda Interior">
+<meta property="og:description" content="Retratos dos guardiões, lâminas dos capítulos e cenas de Átnor.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --breu:#14100C;         /* parede da galeria */
+  --breu-2:#1E1811;       /* superfície elevada */
+  --vellum:#EFE3CB;       /* texto claro / velino */
+  --tinta:#361F0E;        /* sépia canônico RGB(54,31,14) */
+  --ouro:#C9A227;         /* folha de ouro — acento único */
+  --brasa:#8C4A1E;        /* acento secundário, usado com parcimônia */
+  --linha:rgba(201,162,39,.28);
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--breu);color:var(--vellum);
+  font-family:"EB Garamond",Georgia,serif;font-size:18px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:var(--ouro)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+/* ---------- cabeçalho ---------- */
+header{padding:56px 0 28px;text-align:center;position:relative}
+header::after{
+  content:"";display:block;width:110px;height:1px;margin:26px auto 0;
+  background:linear-gradient(90deg,transparent,var(--ouro),transparent);
+}
+.saga{
+  font-family:Cinzel,serif;font-weight:400;font-size:.72rem;letter-spacing:.34em;
+  text-transform:uppercase;color:var(--ouro);margin:0 0 14px;
+}
+h1{
+  font-family:Cinzel,serif;font-weight:600;font-size:clamp(1.7rem,7vw,3rem);
+  line-height:1.15;margin:0;letter-spacing:.02em;
+}
+.volume{font-style:italic;opacity:.72;margin:14px 0 0;font-size:1rem}
+
+.mapa{
+  display:block;margin:34px auto 0;padding:0;background:none;cursor:zoom-in;
+  border:1px solid var(--linha);max-width:min(430px,86vw);position:relative;
+  border-radius:2px;overflow:hidden;transition:border-color .3s;
+}
+.mapa:hover{border-color:var(--ouro)}
+.mapa img{width:100%;height:auto}
+.mapa-selo{
+  position:absolute;inset:auto 0 0 0;padding:16px 10px 11px;
+  font-family:"EB Garamond",serif;font-style:italic;font-size:.86rem;color:var(--vellum);
+  background:linear-gradient(transparent,rgba(10,8,5,.9));
+}
+
+/* ---------- navegação ---------- */
+nav{position:sticky;top:0;z-index:30;background:rgba(20,16,12,.94);
+  backdrop-filter:blur(6px);border-bottom:1px solid var(--linha);margin-top:34px}
+.abas{display:flex;gap:6px;justify-content:center;padding:10px 0;flex-wrap:wrap}
+.aba{
+  font-family:Cinzel,serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  background:none;border:1px solid transparent;color:var(--vellum);opacity:.6;
+  padding:9px 14px;border-radius:2px;cursor:pointer;transition:opacity .2s,border-color .2s;
+}
+.aba:hover{opacity:1}
+.aba[aria-selected="true"]{opacity:1;border-color:var(--linha);color:var(--ouro)}
+.aba:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--ouro);outline-offset:3px}
+
+/* ---------- introdução da seção ---------- */
+.intro{max-width:640px;margin:38px auto 0;text-align:center}
+.intro p{opacity:.78;margin:0}
+.eyebrow{
+  font-family:Cinzel,serif;font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--ouro);opacity:.85;margin:0 0 10px;
+}
+
+/* ---------- A RODA (assinatura da página) ---------- */
+.roda-bloco{display:flex;justify-content:center;margin:30px 0 6px}
+.roda{width:min(300px,78vw);height:auto;overflow:visible}
+.roda .aro{fill:none;stroke:var(--linha);stroke-width:1}
+.roda .assento{cursor:pointer}
+.roda .assento circle{fill:var(--breu-2);stroke:var(--linha);stroke-width:1;transition:fill .25s,stroke .25s}
+.roda .assento text{
+  font-family:Cinzel,serif;font-size:9px;fill:var(--vellum);opacity:.75;
+  text-anchor:middle;dominant-baseline:central;pointer-events:none;
+}
+.roda .assento:hover circle,.roda .assento:focus circle{fill:var(--ouro);stroke:var(--ouro)}
+.roda .assento:hover text,.roda .assento:focus text{fill:var(--breu);opacity:1}
+.roda .vazio circle{fill:none;stroke-dasharray:2 3}
+.roda .centro{
+  font-family:Cinzel,serif;font-size:8px;letter-spacing:.22em;fill:var(--ouro);
+  text-anchor:middle;opacity:.8;text-transform:uppercase;
+}
+.roda-nota{text-align:center;font-size:.82rem;opacity:.55;font-style:italic;margin:2px 0 0}
+
+/* ---------- grade ---------- */
+.grade{
+  display:grid;gap:22px;margin:34px 0 10px;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+}
+.grade.retratos{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.grade.capas{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.lamina{
+  background:var(--breu-2);border:1px solid var(--linha);border-radius:2px;
+  overflow:hidden;text-align:left;padding:0;color:inherit;font:inherit;
+  cursor:pointer;width:100%;transition:transform .3s ease,border-color .3s ease;
+}
+.lamina:hover{transform:translateY(-3px);border-color:var(--ouro)}
+.moldura{position:relative;background:#0E0B08;overflow:hidden}
+.moldura img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease,filter .4s ease}
+.lamina:hover .moldura img{transform:scale(1.04)}
+.retratos .moldura{aspect-ratio:3/4}
+.capas .moldura{aspect-ratio:2/3}
+.grade:not(.retratos):not(.capas) .moldura{aspect-ratio:4/3}
+.velado img{filter:blur(14px) saturate(.6)}
+.selo-spoiler{
+  position:absolute;inset:auto 0 0 0;padding:10px;text-align:center;
+  font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  background:linear-gradient(transparent,rgba(14,11,8,.92));color:var(--ouro);
+}
+.legenda{padding:14px 16px 18px}
+.numeral{
+  font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ouro);opacity:.85;display:block;margin-bottom:5px;
+}
+.titulo{font-family:Cinzel,serif;font-size:.98rem;margin:0 0 5px;line-height:1.3}
+.nota{margin:0;font-size:.9rem;opacity:.66;font-style:italic}
+
+/* lâmina ainda sem arte */
+.pendente{border-style:dashed;cursor:default}
+.pendente:hover{transform:none;border-color:var(--linha)}
+.pendente .moldura{display:flex;align-items:center;justify-content:center;background:#100D09}
+.pendente .marca{font-family:Cinzel,serif;font-size:1.5rem;color:var(--ouro);opacity:.3}
+
+/* ---------- lightbox ---------- */
+.visor{
+  position:fixed;inset:0;z-index:60;background:rgba(8,6,4,.97);
+  display:none;align-items:center;justify-content:center;padding:16px;
+}
+.visor[open]{display:flex}
+.visor figure{margin:0;max-width:1000px;width:100%;text-align:center}
+.visor img{max-height:74vh;width:auto;margin:0 auto;border:1px solid var(--linha)}
+.visor figcaption{margin-top:16px}
+.visor .titulo{font-size:1.1rem}
+.fechar,.passo{
+  position:absolute;background:rgba(30,24,17,.85);border:1px solid var(--linha);
+  color:var(--vellum);width:46px;height:46px;border-radius:50%;cursor:pointer;
+  font-size:1.2rem;line-height:1;display:grid;place-items:center;
+}
+.fechar{top:16px;right:16px}
+.passo.ant{left:12px;top:50%;transform:translateY(-50%)}
+.passo.prox{right:12px;top:50%;transform:translateY(-50%)}
+.passo:hover,.fechar:hover{border-color:var(--ouro);color:var(--ouro)}
+
+/* ---------- chamada final ---------- */
+.chamada{
+  margin:64px 0 0;padding:44px 24px;text-align:center;
+  border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);
+}
+.chamada h2{font-family:Cinzel,serif;font-weight:600;font-size:1.4rem;margin:0 0 12px}
+.chamada p{max-width:520px;margin:0 auto 24px;opacity:.78}
+.botao{
+  display:inline-block;font-family:Cinzel,serif;font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;text-decoration:none;color:var(--breu);background:var(--ouro);
+  padding:14px 26px;border-radius:2px;transition:background .25s;
+}
+.botao:hover{background:var(--vellum)}
+footer{padding:34px 0 60px;text-align:center;font-size:.82rem;opacity:.45}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="saga">A Saga da Fenda Interior</p>
+    <h1>Galeria de Átnor</h1>
+    <p class="volume">Saga I — Em Busca da Centelha Perdida</p>
+
+    <button class="mapa" id="mapa-canonico" aria-label="Ampliar o mapa de Átnor">
+      <img src="img/mapa/atnor-m.webp" alt="Mapa canônico de Átnor" width="600" height="900" fetchpriority="high">
+      <span class="mapa-selo">O mapa que você procura é você</span>
+    </button>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <div class="abas" role="tablist" aria-label="Seções da galeria">
+      <button class="aba" role="tab" data-tipo="personagem" aria-selected="true">Personagens</button>
+      <button class="aba" role="tab" data-tipo="capitulo" aria-selected="false">Capítulos</button>
+      <button class="aba" role="tab" data-tipo="cena" aria-selected="false">Cenas</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="intro">
+    <p class="eyebrow" id="secao-eyebrow">Doze guardiões, um cartógrafo</p>
+    <p id="secao-texto"></p>
+  </div>
+
+  <div id="roda-area" hidden>
+    <div class="roda-bloco"><svg class="roda" viewBox="0 0 260 260" role="group" aria-label="A Roda — treze assentos, doze numerados"></svg></div>
+    <p class="roda-nota">Doze números, treze assentos. O décimo terceiro não se numera.</p>
+  </div>
+
+  <div class="grade" id="grade"></div>
+
+  <section class="chamada">
+    <h2>Leve Átnor com você</h2>
+    <p>O mapa de Átnor e o primeiro capítulo, direto no seu e-mail — junto com o aviso de lançamento da Saga II.</p>
+    <a class="botao" href="./index.html">Receber o mapa</a>
+  </section>
+</main>
+
+<footer>Lior Leal · A Saga da Fenda Interior · ISBN 978-65-02-32392-2</footer>
+
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <button class="fechar" id="fechar" aria-label="Fechar">✕</button>
+  <button class="passo ant" id="ant" aria-label="Anterior">‹</button>
+  <button class="passo prox" id="prox" aria-label="Próxima">›</button>
+  <figure>
+    <img id="visor-img" alt="">
+    <figcaption>
+      <span class="numeral" id="visor-numeral"></span>
+      <p class="titulo" id="visor-titulo"></p>
+      <p class="nota" id="visor-nota"></p>
+    </figcaption>
+  </figure>
+</div>
+
+<script>
+/* =====================================================================
+   1) CONFIGURAÇÃO — troque pelo seu cloud name do Cloudinary
+   ===================================================================== */
+const CLOUD_NAME = "astlwodb";
+
+/* =====================================================================
+   2) ACERVO — a única parte que você edita no dia a dia.
+      img: pode ser
+        · o public_id do Cloudinary  → "saga/personagens/auron-sollis"
+        · um caminho local no repo   → "img/auron.jpg"
+        · uma URL completa           → "https://..."
+        · "" (vazio) → a lâmina aparece como assento pendente
+      spoiler:true → imagem entra velada, revela ao toque
+   ===================================================================== */
+const ACERVO = [
+
+  /* ---------- PERSONAGENS ---------- */
+  {tipo:"personagem", img:"img/personagens/auron-sollis", nome:"Auron Sollis",
+   papel:"O cartógrafo", nota:"Aquele que desenha o caminho enquanto o percorre."},
+  {tipo:"personagem", img:"img/personagens/serena-luminara", nome:"Serena Luminara",
+   papel:"Coprotagonista", nota:""},
+
+  /* guardiões — a ordem canônica dos três primeiros está travada */
+  {tipo:"personagem", img:"img/personagens/kaelen-om", nome:"Kaelen Ôm",
+   papel:"Primeiro guardião", nota:""},
+  {tipo:"personagem", img:"img/personagens/vidya-smriti", nome:"Vidya Smriti",
+   papel:"Segunda guardiã", nota:""},
+  {tipo:"personagem", img:"img/personagens/shalim", nome:"Shalim",
+   papel:"Terceiro guardião · ה", nota:""},
+  {tipo:"personagem", img:"img/personagens/rohan-prana", nome:"Rohan Prana", papel:"", nota:""},
+  {tipo:"personagem", img:"img/personagens/sila-anahata", nome:"Sila Anahata", papel:"", nota:""},
+  {tipo:"personagem", img:"img/personagens/dhara-moksha", nome:"Dhara Moksha", papel:"", nota:""},
+  {tipo:"personagem", img:"img/personagens/ignis-darshan", nome:"Ignis Darshan", papel:"", nota:""},
+  {tipo:"personagem", img:"img/personagens/jyoti-nirvana", nome:"Jyoti Nirvana", papel:"", nota:""},
+  {tipo:"personagem", img:"img/personagens/kriya-akanda", nome:"Kriya Akanda", papel:"", nota:""},
+  {tipo:"personagem", img:"img/personagens/maya-akasa", nome:"Maya Akasa", papel:"", nota:""},
+  {tipo:"personagem", img:"img/personagens/vayu-sutrata", nome:"Vayú Sutrata", papel:"", nota:""},
+  {tipo:"personagem", img:"", nome:"Décimo segundo guardião", papel:"", nota:""},
+
+  /* aldeia e caminho */
+  {tipo:"personagem", img:"img/personagens/dona-mira", nome:"Dona Mira", papel:"", nota:""},
+  {tipo:"personagem", img:"img/personagens/liam", nome:"Liam", papel:"", nota:""},
+  {tipo:"personagem", img:"img/personagens/theron", nome:"Theron", papel:"", nota:""},
+
+  /* antagonistas */
+  {tipo:"personagem", img:"img/personagens/mara-vikalpa", nome:"Mára Vikalpa",
+   papel:"Antagonista", nota:""},
+  {tipo:"personagem", img:"img/personagens/rita-vritta", nome:"Rita Vritta",
+   papel:"Antagonista", nota:""},
+  {tipo:"personagem", img:"img/personagens/kali-dvesha", nome:"Kali Dvesha", papel:"", nota:""},
+  {tipo:"personagem", img:"img/personagens/tamas-nidra", nome:"Tamas Nidra", papel:"", nota:""},
+  {tipo:"personagem", img:"img/personagens/durga-aham-1", nome:"Durga Aham",
+   papel:"Primeira aparição", nota:""},
+  {tipo:"personagem", img:"img/personagens/durga-aham-2", nome:"Durga Aham",
+   papel:"Segunda aparição", nota:""},
+
+  /* ---------- CAPÍTULOS (13 lâminas, 12 números) ---------- */
+  {tipo:"capitulo", img:"img/capitulos/cap-01", numeral:"I", nome:"O Chamado da Fenda Interior", nota:""},
+  {tipo:"capitulo", img:"img/capitulos/cap-02", numeral:"II", nome:"O Silêncio que Escuta", nota:""},
+  {tipo:"capitulo", img:"img/capitulos/cap-02b", numeral:"II-B", nome:"O Canto que Faz",
+   nota:"Veridiana — a jornada continua", semNumero:true},
+  {tipo:"capitulo", img:"img/capitulos/cap-03", numeral:"III", nome:"O Mapa dos Arquétipos", nota:""},
+  {tipo:"capitulo", img:"img/capitulos/cap-04", numeral:"IV", nome:"A Chama que Queima Ilusões", nota:""},
+  {tipo:"capitulo", img:"img/capitulos/cap-05", numeral:"V", nome:"O Sonho que Sonha o Sonhador", nota:""},
+  {tipo:"capitulo", img:"img/capitulos/cap-06", numeral:"VI", nome:"A Brincadeira Sagrada", nota:""},
+  {tipo:"capitulo", img:"img/capitulos/cap-07", numeral:"VII", nome:"A Montanha que Não Fala", nota:""},
+  {tipo:"capitulo", img:"img/capitulos/cap-08", numeral:"VIII", nome:"O Átomo Divino em Todos", nota:""},
+  {tipo:"capitulo", img:"img/capitulos/cap-09", numeral:"IX", nome:"O Serviço Anônimo",
+   nota:"Vila do Karma Repetido"},
+  {tipo:"capitulo", img:"img/capitulos/cap-10", numeral:"X", nome:"A Palavra que Faltava", nota:""},
+  {tipo:"capitulo", img:"img/capitulos/cap-11", numeral:"XI", nome:"O Despertar da Serpente",
+   nota:"Abismo Silencioso"},
+  {tipo:"capitulo", img:"img/capitulos/cap-12", numeral:"XII", nome:"O Retorno ao Silêncio (e à Cidade)",
+   nota:"Veridiana — a jornada continua"},
+
+  /* ---------- CENAS ---------- */
+  {tipo:"cena", img:"saga/cenas/cena-01", nome:"Cena 1", nota:"", spoiler:false},
+  {tipo:"cena", img:"saga/cenas/cena-02", nome:"Cena 2", nota:"", spoiler:false},
+  {tipo:"cena", img:"saga/cenas/cena-03", nome:"Cena 3", nota:"", spoiler:true},
+  {tipo:"cena", img:"", nome:"Cena 4", nota:""},
+];
+
+/* =====================================================================
+   3) MOTOR — normalmente não precisa mexer daqui para baixo
+   ===================================================================== */
+const TEXTOS = {
+  personagem:{eyebrow:"Doze guardiões, um cartógrafo",
+    texto:"Quem Auron encontra no caminho: os guardiões que ensinam, os que confundem e os instrumentos de Átnor."},
+  capitulo:{eyebrow:"As lâminas do caminho",
+    texto:"Uma lâmina para cada capítulo. Toque em um assento da Roda para ir direto à lâmina."},
+  cena:{eyebrow:"Momentos de Átnor",
+    texto:"Cenas do interior da narrativa. As veladas escondem revelações — toque para ver."}
+};
+
+const url = (img, w) => {
+  if(!img) return "";
+  if(/^https?:\/\//.test(img)) return img;                 // URL completa
+  if(/^(img|assets|\.)\//.test(img)) return `${img}-${w <= 800 ? "m" : "g"}.webp`;
+  return `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/f_auto,q_auto,w_${w}/${img}`;
+};
+
+const grade = document.getElementById("grade");
+const rodaArea = document.getElementById("roda-area");
+let tipoAtivo = "personagem";
+let visiveis = [];
+let indiceAtual = 0;
+
+function render(tipo){
+  tipoAtivo = tipo;
+  document.getElementById("mapa-canonico").addEventListener("click", () => {
+  document.getElementById("visor-img").src = "img/mapa/atnor-g.webp";
+  document.getElementById("visor-img").alt = "Mapa canônico de Átnor";
+  document.getElementById("visor-numeral").textContent = "Átnor";
+  document.getElementById("visor-titulo").textContent = "O mapa canônico";
+  document.getElementById("visor-nota").textContent = "O mapa que você procura é você.";
+  visiveis = [];                       // fora da grade: sem ← →
+  visor.setAttribute("open","");
+  document.body.style.overflow = "hidden";
+  document.getElementById("fechar").focus();
+});
+
+document.querySelectorAll(".aba").forEach(b =>
+    b.setAttribute("aria-selected", String(b.dataset.tipo === tipo)));
+  document.getElementById("secao-eyebrow").textContent = TEXTOS[tipo].eyebrow;
+  document.getElementById("secao-texto").textContent = TEXTOS[tipo].texto;
+
+  grade.classList.toggle("retratos", tipo === "personagem");
+  grade.classList.toggle("capas", tipo === "capitulo");
+  rodaArea.hidden = tipo !== "capitulo";
+  if(tipo === "capitulo") desenharRoda();
+
+  visiveis = ACERVO.filter(i => i.tipo === tipo);
+  grade.innerHTML = "";
+  visiveis.forEach((item, i) => grade.appendChild(cartao(item, i)));
+}
+
+function cartao(item, i){
+  const el = document.createElement("button");
+  el.className = "lamina" + (item.img ? "" : " pendente");
+  el.id = `lamina-${item.tipo}-${i}`;
+  const rotulo = item.numeral && !item.semNumero ? item.numeral
+               : (item.papel || (item.tipo === "cena" ? "Cena" : ""));
+
+  el.innerHTML = `
+    <div class="moldura ${item.spoiler ? "velado" : ""}">
+      ${item.img
+        ? `<img loading="lazy" src="${url(item.img,600)}" alt="${item.nome}">
+           ${item.spoiler ? '<span class="selo-spoiler">Contém revelação · toque para ver</span>' : ""}`
+        : `<span class="marca">${item.numeral || "✦"}</span>`}
+    </div>
+    <div class="legenda">
+      ${rotulo ? `<span class="numeral">${rotulo}</span>` : ""}
+      <p class="titulo">${item.nome}</p>
+      ${item.nota ? `<p class="nota">${item.nota}</p>` : ""}
+      ${item.img ? "" : `<p class="nota">Lâmina pendente</p>`}
+    </div>`;
+
+  if(item.img){
+    el.addEventListener("click", () => {
+      const moldura = el.querySelector(".moldura");
+      if(moldura.classList.contains("velado")){
+        moldura.classList.remove("velado");
+        const selo = moldura.querySelector(".selo-spoiler");
+        if(selo) selo.remove();
+        return;
+      }
+      abrirVisor(i);
+    });
+  }else{
+    el.disabled = true;
+  }
+  return el;
+}
+
+/* ---------- A Roda ---------- */
+function desenharRoda(){
+  const svg = document.querySelector(".roda");
+  if(svg.dataset.pronto) return;
+  const caps = ACERVO.filter(i => i.tipo === "capitulo");
+  const cx = 130, cy = 130, r = 96;
+  let html = `<circle class="aro" cx="${cx}" cy="${cy}" r="${r}"></circle>
+              <text class="centro" x="${cx}" y="${cy}">A Roda</text>`;
+  caps.forEach((c, i) => {
+    const ang = (-90 + i * (360 / caps.length)) * Math.PI / 180;
+    const x = cx + r * Math.cos(ang), y = cy + r * Math.sin(ang);
+    html += `<g class="assento ${c.semNumero ? "vazio" : ""}" tabindex="0" role="link"
+                aria-label="${c.nome}" data-alvo="lamina-capitulo-${i}">
+               <circle cx="${x}" cy="${y}" r="15"></circle>
+               <text x="${x}" y="${y}">${c.semNumero ? "" : c.numeral}</text>
+             </g>`;
+  });
+  svg.innerHTML = html;
+  svg.dataset.pronto = "1";
+  svg.querySelectorAll(".assento").forEach(g => {
+    const ir = () => {
+      const alvo = document.getElementById(g.dataset.alvo);
+      if(alvo){ alvo.scrollIntoView({block:"center"}); alvo.focus({preventScroll:true}); }
+    };
+    g.addEventListener("click", ir);
+    g.addEventListener("keydown", e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); ir(); }});
+  });
+}
+
+/* ---------- Visor ---------- */
+const visor = document.getElementById("visor");
+function abrirVisor(i){
+  indiceAtual = i;
+  const item = visiveis[i];
+  document.getElementById("visor-img").src = url(item.img, 1600);
+  document.getElementById("visor-img").alt = item.nome;
+  document.getElementById("visor-numeral").textContent =
+    item.numeral && !item.semNumero ? item.numeral : (item.papel || "");
+  document.getElementById("visor-titulo").textContent = item.nome;
+  document.getElementById("visor-nota").textContent = item.nota || "";
+  visor.setAttribute("open","");
+  document.body.style.overflow = "hidden";
+  document.getElementById("fechar").focus();
+}
+function fecharVisor(){
+  visor.removeAttribute("open");
+  document.body.style.overflow = "";
+}
+function passar(d){
+  if(!visiveis.length) return;
+  const comArte = visiveis.map((x,ix) => x.img ? ix : -1).filter(ix => ix >= 0);
+  const pos = comArte.indexOf(indiceAtual);
+  abrirVisor(comArte[(pos + d + comArte.length) % comArte.length]);
+}
+document.getElementById("fechar").addEventListener("click", fecharVisor);
+document.getElementById("ant").addEventListener("click", () => passar(-1));
+document.getElementById("prox").addEventListener("click", () => passar(1));
+visor.addEventListener("click", e => { if(e.target === visor) fecharVisor(); });
+document.addEventListener("keydown", e => {
+  if(!visor.hasAttribute("open")) return;
+  if(e.key === "Escape") fecharVisor();
+  if(e.key === "ArrowLeft") passar(-1);
+  if(e.key === "ArrowRight") passar(1);
+});
+let x0 = null;
+visor.addEventListener("touchstart", e => x0 = e.touches[0].clientX, {passive:true});
+visor.addEventListener("touchend", e => {
+  if(x0 === null) return;
+  const dx = e.changedTouches[0].clientX - x0;
+  if(Math.abs(dx) > 55) passar(dx < 0 ? 1 : -1);
+  x0 = null;
+}, {passive:true});
+
+document.getElementById("mapa-canonico").addEventListener("click", () => {
+  document.getElementById("visor-img").src = "img/mapa/atnor-g.webp";
+  document.getElementById("visor-img").alt = "Mapa canônico de Átnor";
+  document.getElementById("visor-numeral").textContent = "Átnor";
+  document.getElementById("visor-titulo").textContent = "O mapa canônico";
+  document.getElementById("visor-nota").textContent = "O mapa que você procura é você.";
+  visiveis = [];                       // fora da grade: sem ← →
+  visor.setAttribute("open","");
+  document.body.style.overflow = "hidden";
+  document.getElementById("fechar").focus();
+});
+
+document.querySelectorAll(".aba").forEach(b =>
+  b.addEventListener("click", () => render(b.dataset.tipo)));
+
+render("personagem");
+</script>
+</body>
+</html>

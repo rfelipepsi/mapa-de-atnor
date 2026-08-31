@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Átnor — The Saga of the Inner Rift · Lior Leal</title>
+<meta name="description" content="Auron Sollis is a cartographer. He spent his life drawing borders — and the only one he cannot cross is the one that opened inside him. Enter Átnor.">
+
+<link rel="canonical" href="https://rfelipepsi.github.io/mapa-de-atnor/atnor.html">
+<link rel="alternate" hreflang="en" href="https://rfelipepsi.github.io/mapa-de-atnor/atnor.html">
+<link rel="alternate" hreflang="pt-BR" href="https://rfelipepsi.github.io/mapa-de-atnor/atnor.html?lang=pt">
+<link rel="alternate" hreflang="x-default" href="https://rfelipepsi.github.io/mapa-de-atnor/atnor.html">
+
+<meta property="og:type" content="book">
+<meta property="og:title" content="Átnor — The Saga of the Inner Rift">
+<meta property="og:description" content="Guardians are waiting for him, each with a lesson he never asked for. And not one of them introduces himself as an enemy.">
+<meta property="og:image" content="https://rfelipepsi.github.io/mapa-de-atnor/auron-og.jpg">
+<meta property="og:url" content="https://rfelipepsi.github.io/mapa-de-atnor/atnor.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "In Search of the Forgotten Spark",
+  "alternateName": "Em Busca da Centelha Perdida",
+  "inLanguage": "en",
+  "bookEdition": "1",
+  "bookFormat": "https://schema.org/EBook",
+  "numberOfPages": null,
+  "isPartOf": {
+    "@type": "BookSeries",
+    "name": "The Saga of the Inner Rift",
+    "alternateName": "A Saga da Fenda Interior"
+  },
+  "position": 1,
+  "author": {
+    "@type": "Person",
+    "name": "Lior Leal",
+    "identifier": "https://isni.org/isni/0000000530833887"
+  },
+  "workExample": [
+    {
+      "@type": "Book",
+      "inLanguage": "pt-BR",
+      "name": "Em Busca da Centelha Perdida",
+      "isbn": "978-65-02-32392-2",
+      "bookFormat": "https://schema.org/EBook",
+      "publisher": { "@type": "Organization", "name": "Lior Leal" }
+    }
+  ],
+  "genre": ["Metaphysical fiction", "Fantasy", "Mysticism"],
+  "about": "An initiatory journey through the realm of Átnor."
+}
+</script>
+
+<style>
+:root{
+  --ink:#17100C;
+  --ink-2:#241610;
+  --ink-3:#2E1E14;
+  --parch:#EFE3CC;
+  --parch-dim:#C4B296;
+  --gold:#C9A24A;
+  --gold-hi:#EBD08A;
+  /* Tabernacle — Exodus 25. Auron's prescribed palette. */
+  --tb-zahav:#BF865B;
+  --tb-tekhelet:#262746;
+  --tb-argaman:#362236;
+  --tb-shani:#6C281F;
+  --tb-shesh:#F8F3EE;
+  --rule:rgba(201,162,74,.28);
+  --maxw:66rem;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  margin:0;background:var(--ink);color:var(--parch);
+  font-family:"EB Garamond",Georgia,serif;font-size:1.09rem;line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.disp{font-family:Cinzel,Georgia,serif;font-weight:600;letter-spacing:.04em;line-height:1.22;color:var(--gold-hi)}
+p{max-width:38em}
+a{color:var(--gold-hi)}
+img{max-width:100%;display:block}
+
+/* ---------- language switch ---------- */
+.langbar{position:fixed;top:0;right:0;z-index:60;display:flex;gap:0;
+  background:rgba(23,16,12,.82);backdrop-filter:blur(6px);
+  border-left:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.langbar button{
+  font-family:Cinzel,serif;font-size:.72rem;letter-spacing:.16em;
+  background:none;border:0;color:var(--parch-dim);padding:.72rem .95rem;cursor:pointer}
+.langbar button[aria-pressed="true"]{color:var(--ink);background:var(--gold)}
+.langbar button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:-2px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:#0d0906 center/cover no-repeat}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 42%,rgba(23,16,12,.18) 0%,rgba(23,16,12,.72) 58%,var(--ink) 100%)}
+.hero-inner{position:relative;z-index:2;padding:6rem 1.5rem 5rem;max-width:52rem}
+.kicker{font-family:Cinzel,serif;font-size:clamp(.62rem,1.6vw,.78rem);letter-spacing:.42em;
+  color:var(--gold);margin:0 0 1.6rem}
+.hero h1{font-size:clamp(2.4rem,7.4vw,5rem);margin:0;
+  text-shadow:0 0 42px rgba(201,162,74,.28)}
+.hero .sub{font-family:Cinzel,serif;font-size:clamp(.85rem,2.2vw,1.05rem);
+  letter-spacing:.2em;color:var(--parch-dim);margin:1.1rem 0 2.6rem}
+.hero .line{font-size:clamp(1.15rem,3vw,1.5rem);font-style:italic;color:var(--tb-shesh);
+  margin:0 auto;max-width:24em}
+.hero .byline{font-family:Cinzel,serif;letter-spacing:.3em;font-size:.8rem;color:var(--gold);margin-top:3rem}
+.scrollcue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;
+  font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.3em;color:var(--parch-dim);
+  background:none;border:0;cursor:pointer;padding:.6rem}
+.scrollcue:hover{color:var(--gold-hi)}
+
+/* ---------- sections ---------- */
+section{padding:clamp(4.5rem,10vw,8rem) 1.5rem}
+.wrap{max-width:var(--maxw);margin:0 auto}
+.center{text-align:center}
+.center p{margin-left:auto;margin-right:auto}
+h2{font-size:clamp(1.5rem,4vw,2.3rem);margin:0 0 .6rem}
+.lede{color:var(--parch-dim);font-size:1.02rem;max-width:34em}
+.hr{height:1px;background:var(--rule);border:0;margin:3rem 0}
+
+/* ---------- the wheel ---------- */
+.wheelsec{background:linear-gradient(180deg,var(--ink) 0%,#120C08 50%,var(--ink) 100%)}
+.wheelgrid{display:grid;gap:clamp(2rem,5vw,4rem);grid-template-columns:1fr;align-items:center}
+@media(min-width:900px){.wheelgrid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}}
+.wheel{width:100%;max-width:34rem;margin:0 auto;display:block}
+.seat{cursor:pointer}
+.seat circle{fill:#1C130D;stroke:var(--rule);stroke-width:1.4;transition:fill .18s,stroke .18s}
+.seat text{font-family:Cinzel,serif;font-size:15px;fill:var(--parch-dim);text-anchor:middle;
+  dominant-baseline:central;transition:fill .18s;pointer-events:none}
+.seat:hover circle,.seat:focus-visible circle{fill:#3A2712;stroke:var(--gold-hi)}
+.seat:hover text{fill:var(--gold-hi)}
+.seat:focus-visible{outline:none}
+.seat:focus-visible circle{stroke-width:2.4}
+.seat.is-on circle{fill:var(--gold);stroke:var(--gold-hi)}
+.seat.is-on text{fill:#17100C}
+.seat.unnumbered circle{stroke-dasharray:3 4}
+.ring{fill:none;stroke:var(--rule);stroke-width:1}
+.hub{font-family:Cinzel,serif;fill:var(--gold-hi);text-anchor:middle}
+
+.chapinfo{min-height:12rem;border-left:1px solid var(--rule);padding-left:1.6rem}
+.plate{display:block;width:100%;max-width:17rem;margin:0 0 1.4rem;padding:.4rem;
+  background:#120C08;border:1px solid var(--rule);cursor:zoom-in}
+.plate img{width:100%}
+.plate:hover{border-color:var(--gold)}
+.chapinfo .num{font-family:Cinzel,serif;letter-spacing:.3em;font-size:.72rem;color:var(--gold);margin:0 0 .7rem}
+.chapinfo h3{font-size:clamp(1.35rem,3.4vw,1.9rem);margin:0 0 .9rem}
+.chapinfo p{color:var(--parch-dim);margin:0}
+.bookends{margin-top:2.2rem;font-size:.92rem;color:var(--parch-dim);border-top:1px solid var(--rule);padding-top:1.2rem}
+.bookends span{color:var(--gold)}
+
+/* ---------- book ---------- */
+.booksec{background:var(--ink-2)}
+.bookgrid{display:grid;gap:clamp(2rem,5vw,3.5rem);grid-template-columns:1fr;align-items:start}
+@media(min-width:820px){.bookgrid{grid-template-columns:minmax(0,20rem) minmax(0,1fr)}}
+.coverfig{margin:0}
+.coverfig img{border:1px solid var(--rule);box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.coverfig figcaption{font-family:Cinzel,serif;font-size:.66rem;letter-spacing:.18em;
+  color:var(--parch-dim);margin-top:.9rem;text-align:center}
+.blurb p{margin:0 0 1.15rem}
+.blurb .last{font-style:italic;color:var(--tb-shesh)}
+.cta{display:inline-block;font-family:Cinzel,serif;font-size:.82rem;letter-spacing:.16em;
+  text-decoration:none;color:var(--ink);background:var(--gold);
+  padding:.95rem 1.9rem;border:1px solid var(--gold-hi);transition:background .18s}
+.cta:hover{background:var(--gold-hi)}
+.cta.ghost{background:none;color:var(--gold-hi);border-color:var(--rule)}
+.cta.ghost:hover{background:rgba(201,162,74,.12)}
+.ctarow{display:flex;flex-wrap:wrap;gap:.9rem;margin:1.8rem 0 1rem;align-items:center}
+.note{font-size:.9rem;color:var(--parch-dim)}
+
+/* ---------- map ---------- */
+.mapsec{background:var(--ink);text-align:center}
+.mapframe{display:inline-block;max-width:44rem;border:1px solid var(--rule);
+  padding:.6rem;background:#120C08;cursor:zoom-in}
+.mapframe img{width:100%}
+.lightbox{position:fixed;inset:0;z-index:80;background:rgba(9,6,4,.96);
+  display:none;place-items:center;padding:1.5rem}
+.lightbox[open],.lightbox.on{display:grid}
+.lightbox img{max-width:min(100%,60rem);max-height:92vh;object-fit:contain}
+.lbclose{position:absolute;top:1rem;right:1.2rem;background:none;border:1px solid var(--rule);
+  color:var(--parch);font-family:Cinzel,serif;font-size:.72rem;letter-spacing:.2em;padding:.6rem 1rem;cursor:pointer}
+
+/* ---------- places ---------- */
+.placessec{background:var(--ink)}
+.places{display:grid;gap:1.6rem;margin-top:2.8rem;grid-template-columns:1fr}
+@media(min-width:760px){.places{grid-template-columns:1fr 1fr}}
+.place{margin:0;border:1px solid var(--rule);background:#120C08}
+.place button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.place img{width:100%}
+.place figcaption{padding:1rem 1.2rem 1.2rem}
+.place h4{font-family:Cinzel,serif;font-size:.95rem;letter-spacing:.06em;color:var(--gold-hi);margin:0 0 .35rem}
+.place p{font-size:.92rem;color:var(--parch-dim);margin:0;max-width:none}
+.place.wide{grid-column:1/-1}
+
+/* ---------- music ---------- */
+.musicsec{background:var(--ink-2)}
+.sub-h{font-size:.82rem;letter-spacing:.2em;color:var(--gold);margin:3rem 0 1rem;
+  font-family:Cinzel,serif;font-weight:400}
+.tracks{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.tracks li{border-bottom:1px solid var(--rule)}
+.tracks button{display:flex;width:100%;gap:1rem;align-items:baseline;text-align:left;
+  background:none;border:0;color:var(--parch);cursor:pointer;
+  font-family:"EB Garamond",serif;font-size:1.02rem;padding:.95rem .4rem;transition:background .15s}
+.tracks button:hover{background:rgba(201,162,74,.08);color:var(--gold-hi)}
+.tracks button[aria-current="true"]{color:var(--gold-hi)}
+.tracks .idx{font-family:Cinzel,serif;font-size:.72rem;color:var(--gold);min-width:1.6rem;flex:none}
+.tracks .nm{flex:1}
+.tracks .dur{font-size:.82rem;color:var(--parch-dim);flex:none}
+.suite button[aria-current="true"] .idx{color:var(--gold-hi)}
+
+.player{position:sticky;top:0;z-index:40;background:rgba(23,16,12,.94);backdrop-filter:blur(8px);
+  border:1px solid var(--rule);padding:.9rem 1.1rem;margin-top:2.4rem}
+.pl-now{display:flex;align-items:center;gap:1rem}
+.pl-toggle{flex:none;width:2.6rem;height:2.6rem;border-radius:50%;border:1px solid var(--gold);
+  background:none;color:var(--gold-hi);font-size:.9rem;cursor:pointer;line-height:1}
+.pl-toggle:hover{background:var(--gold);color:var(--ink)}
+.pl-meta{flex:1;min-width:0}
+.pl-title{margin:0 0 .45rem;font-size:.95rem;color:var(--gold-hi);max-width:none;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-bar{height:2px;background:var(--rule);cursor:pointer;position:relative}
+.pl-bar span{display:block;height:100%;width:0;background:var(--gold)}
+.pl-time{margin:0;font-size:.8rem;color:var(--parch-dim);flex:none;font-variant-numeric:tabular-nums}
+
+/* ---------- auron ---------- */
+.auronsec{background:var(--ink);text-align:center}
+.auronsec .lede{margin:0 auto}
+.turnaround{display:block;width:100%;max-width:56rem;margin:2.6rem auto 1.2rem;
+  padding:.6rem;background:#120C08;border:1px solid var(--rule);cursor:zoom-in}
+.turnaround img{width:100%}
+.turnaround:hover{border-color:var(--gold)}
+
+/* ---------- roster ---------- */
+.rosterbanner{display:block;margin:0 0 2.4rem;border:1px solid var(--rule);
+  background:#120C08;padding:.5rem}
+.rosterbanner img{width:100%}
+.rostersec{background:var(--ink-2)}
+.roster{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:2.5rem}
+@media(min-width:640px){.roster{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.roster{grid-template-columns:1fr 1fr 1fr}}
+.fig{background:var(--ink-2);padding:1.4rem 1.5rem;border-left:3px solid transparent}
+.fig h4{font-family:Cinzel,serif;font-size:.95rem;letter-spacing:.06em;color:var(--gold-hi);margin:0 0 .45rem}
+.fig p{font-size:.94rem;color:var(--parch-dim);margin:0;max-width:none}
+.fig[data-kind="g"]{border-left-color:var(--tb-zahav)}
+.fig[data-kind="t"]{border-left-color:var(--tb-shani)}
+.fig[data-kind="s"]{border-left-color:var(--tb-tekhelet)}
+.legend{display:flex;flex-wrap:wrap;gap:1.4rem;margin-top:1.6rem;font-size:.8rem;color:var(--parch-dim)}
+.legend i{display:inline-block;width:1.6rem;height:3px;vertical-align:middle;margin-right:.5rem}
+
+/* ---------- solo + author + signup ---------- */
+.split{display:grid;gap:clamp(2rem,5vw,3.5rem);grid-template-columns:1fr}
+@media(min-width:820px){.split{grid-template-columns:1fr 1fr}}
+.card{border:1px solid var(--rule);padding:clamp(1.6rem,4vw,2.4rem);background:#1B120C}
+.card h3{font-size:1.2rem;margin:0 0 .8rem}
+.signup{background:linear-gradient(180deg,var(--ink) 0%,#0F0A07 100%);text-align:center}
+.signupform{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:2rem}
+.signupform input{font-family:"EB Garamond",serif;font-size:1rem;background:#120C08;
+  border:1px solid var(--rule);color:var(--parch);padding:.9rem 1.1rem;min-width:min(100%,20rem)}
+.signupform input:focus{outline:2px solid var(--gold);outline-offset:1px}
+.signupform button{font-family:Cinzel,serif;font-size:.8rem;letter-spacing:.16em;
+  background:var(--gold);color:var(--ink);border:0;padding:.95rem 1.8rem;cursor:pointer}
+.signupform button:hover{background:var(--gold-hi)}
+
+footer{border-top:1px solid var(--rule);padding:3rem 1.5rem 4rem;text-align:center;
+  font-size:.84rem;color:var(--parch-dim)}
+footer .biblio{font-size:.76rem;line-height:2;margin-top:1.2rem}
+footer a{color:var(--parch-dim)}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:2px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<nav class="langbar" aria-label="Language">
+  <button type="button" data-lang="en" aria-pressed="true">EN</button>
+  <button type="button" data-lang="pt" aria-pressed="false">PT</button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-inner">
+    <p class="kicker" data-i18n="kicker">The Saga of the Inner Rift</p>
+    <h1>Átnor</h1>
+    <p class="sub" data-i18n="herosub">Saga I · In Search of the Forgotten Spark</p>
+    <p class="line" data-i18n="heroline">The map you are looking for is you.</p>
+    <p class="byline">LIOR LEAL</p>
+  </div>
+  <button class="scrollcue" type="button" data-scroll="#wheel" data-i18n="scrollcue">ENTER</button>
+</header>
+
+<!-- ============ THE WHEEL ============ -->
+<section id="wheel" class="wheelsec">
+  <div class="wrap">
+    <div class="center">
+      <h2 data-i18n="wheelh">The Wheel</h2>
+      <p class="lede" data-i18n="wheelp">Thirteen seats. Twelve numbers. The crossing is not a line — it is a circle that closes only when the traveller stops needing it. Touch a seat.</p>
+    </div>
+    <div class="wheelgrid" style="margin-top:3rem">
+      <svg class="wheel" viewBox="0 0 600 600" role="group" aria-label="The thirteen chapters of Saga I" id="wheelSvg">
+        <circle class="ring" cx="300" cy="300" r="212"></circle>
+        <circle class="ring" cx="300" cy="300" r="150" style="stroke-dasharray:2 6"></circle>
+        <g id="seats"></g>
+      </svg>
+      <div class="chapinfo" id="chapinfo" aria-live="polite">
+        <button class="plate" type="button" id="plateBtn" hidden>
+          <img id="plateImg" src="" alt="">
+        </button>
+        <p class="num" id="chapnum" data-i18n="pickprompt">CHOOSE A SEAT</p>
+        <h3 id="chaptitle" data-i18n="wheelidle">The Silence that was once Everything</h3>
+        <p id="chapnote" data-i18n="wheelidlenote">Before the first chapter there is a Prologue, and after the last an Epilogue. Between the second seat and the third sits one that carries no number — it was never meant to.</p>
+        <div class="bookends">
+          <span data-i18n="prologuelbl">Prologue</span> · <span data-i18n="prologuetitle">The Silence that was once Everything</span><br>
+          <span data-i18n="epiloguelbl">Epilogue</span> · <span data-i18n="epiloguetitle">The Silence that never Left</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE BOOK ============ -->
+<section id="book" class="booksec">
+  <div class="wrap">
+    <div class="bookgrid">
+      <figure class="coverfig">
+        <img id="coverImg" src="auron-cover-en.webp" alt="Cover of Saga I — In Search of the Forgotten Spark" width="900" height="1260" loading="lazy">
+        <figcaption data-i18n="covercap">Saga I · First edition · 2026</figcaption>
+      </figure>
+      <div>
+        <h2 data-i18n="bookh">Saga I</h2>
+        <div class="blurb" id="blurb"></div>
+        <div class="ctarow">
+          <a class="cta" id="buyBtn" href="AMAZON_URL_AQUI" target="_blank" rel="noopener" data-i18n="buyen">Read on Kindle</a>
+          <a class="cta ghost" href="#solo" data-i18n="tryfree">Start free</a>
+        </div>
+        <p class="note" id="editionNote" data-i18n="editionnote">The English edition is available now on Kindle. The Portuguese edition follows — join the list below and you will hear first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAP ============ -->
+<section id="map" class="mapsec">
+  <div class="wrap">
+    <h2 data-i18n="maph">The Realm of Átnor</h2>
+    <p class="lede center" data-i18n="mapp">The territory Auron crosses, as he himself would have drawn it — had he reached the end of the crossing with a steady enough hand.</p>
+    <div style="margin-top:2.6rem">
+      <button class="mapframe" type="button" id="mapBtn" aria-label="Open the map of Átnor at full size">
+        <img src="auron-map-atnor.webp" alt="Illustrated map of Átnor" width="1400" height="2073" loading="lazy">
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Map of Átnor">
+  <button class="lbclose" type="button" id="lbClose" data-i18n="close">CLOSE</button>
+  <img src="auron-map-atnor.webp" alt="Illustrated map of Átnor, full size">
+</div>
+
+<!-- ============ PLACES ============ -->
+<section id="places" class="placessec">
+  <div class="wrap">
+    <h2 data-i18n="placesh">Where the Crossing Happens</h2>
+    <p class="lede" data-i18n="placesp">Three of the regions marked on the map, as Auron finds them.</p>
+    <div class="places" id="placesGrid"></div>
+  </div>
+</section>
+
+<!-- ============ MUSIC ============ -->
+<section id="music" class="musicsec">
+  <div class="wrap">
+    <h2 data-i18n="musich">The Sound of Átnor</h2>
+    <p class="lede" data-i18n="musicp">Four movements that follow the crossing, and eight themes that circle it. Nothing plays until you ask it to.</p>
+
+    <div class="player" id="player" hidden>
+      <div class="pl-now">
+        <button class="pl-toggle" type="button" id="plToggle" aria-label="Play or pause">▶</button>
+        <div class="pl-meta">
+          <p class="pl-title" id="plTitle"></p>
+          <div class="pl-bar" id="plBar"><span id="plFill"></span></div>
+        </div>
+        <p class="pl-time" id="plTime">0:00</p>
+      </div>
+      <audio id="audio" preload="none"></audio>
+    </div>
+
+    <h3 class="sub-h" data-i18n="suiteh">The Crossing, in four movements</h3>
+    <ol class="tracks suite" id="suiteList"></ol>
+
+    <h3 class="sub-h" data-i18n="themesh">Themes</h3>
+    <ul class="tracks" id="themeList"></ul>
+    <p class="note" data-i18n="themesnote">The themes are thirty-second sketches.</p>
+  </div>
+</section>
+
+<!-- ============ AURON ============ -->
+<section id="auron" class="auronsec">
+  <div class="wrap">
+    <h2>Auron Sollis</h2>
+    <p class="lede" data-i18n="auronp">Thirty-three. A cartographer. Two names on the Hebrew bands at his wrists, and a light in his palms he did not ask for and cannot put down.</p>
+    <button class="turnaround" type="button" id="turnBtn">
+      <img src="auron-turnaround.webp" alt="Auron Sollis — front, side and back" width="1400" height="933" loading="lazy">
+    </button>
+    <p class="note center" data-i18n="turnnote">Front, side and back — the reference every plate is drawn against.</p>
+  </div>
+</section>
+
+<!-- ============ ROSTER ============ -->
+<section id="figures" class="rostersec">
+  <div class="wrap">
+    <picture class="rosterbanner">
+      <source media="(max-width:640px)" srcset="auron-banner-vertical.webp">
+      <img src="auron-banner.webp" alt="Auron Sollis and the figures of Átnor" width="1400" height="933" loading="lazy">
+    </picture>
+    <h2 data-i18n="rosterh">Those Who Wait</h2>
+    <p class="lede" data-i18n="rosterp">Guardians are waiting for him, each with a lesson he never asked for. Others are waiting for something else — and not one of them introduces himself as an enemy.</p>
+    <div class="legend">
+      <span><i style="background:var(--tb-zahav)"></i><span data-i18n="leg1">Guardians</span></span>
+      <span><i style="background:var(--tb-shani)"></i><span data-i18n="leg2">Tempters</span></span>
+      <span><i style="background:var(--tb-tekhelet)"></i><span data-i18n="leg3">Veridiana</span></span>
+    </div>
+    <div class="roster" id="roster"></div>
+  </div>
+</section>
+
+<!-- ============ SOLO + AUTHOR ============ -->
+<section id="solo">
+  <div class="wrap split">
+    <div class="card">
+      <h3 data-i18n="soloh">Átnor Solo — The Silence that Listens</h3>
+      <p data-i18n="solop">A solo journalling game cut from the second chapter: you sit with Kaelen Ôm and he asks you the questions he asked Auron. One player, one notebook, one hour. Free.</p>
+      <p style="margin-top:1.4rem"><a class="cta ghost" href="ITCH_URL_AQUI" target="_blank" rel="noopener" data-i18n="soloc">Download the booklet</a></p>
+    </div>
+    <div class="card">
+      <h3>Lior Leal</h3>
+      <p data-i18n="authorp">Lior Leal is the pen name of a Brazilian psychologist writing from the coast of Rio de Janeiro. Átnor was built over years from three materials: Jung's individuation, the Kabbalistic tree, and the stubborn conviction that a map is only ever a confession.</p>
+      <p style="margin-top:1.4rem"><a class="cta ghost" href="AUTHOR_CENTRAL_URL_AQUI" target="_blank" rel="noopener" data-i18n="authorc">Author page</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIGNUP ============ -->
+<section class="signup" id="join">
+  <div class="wrap center">
+    <h2 data-i18n="joinh">The map, before anyone else</h2>
+    <p class="lede" data-i18n="joinp">Leave your email and the illustrated map of Átnor arrives at full resolution, along with the first chapter. You will also be the first to know when the Portuguese edition and Book Two are ready.</p>
+    <form class="signupform" id="signupForm" action="MAILERLITE_ACTION_AQUI" method="post" target="_blank">
+      <label for="emailField" class="visually-hidden" style="position:absolute;left:-9999px" data-i18n="emaillbl">Email address</label>
+      <input id="emailField" type="email" name="fields[email]" required placeholder="you@example.com" data-i18n-ph="emailph">
+      <button type="submit" data-i18n="joinc">Send me the map</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p data-i18n="footline">Átnor · The Saga of the Inner Rift · Lior Leal</p>
+  <p class="biblio">
+    ISBN 978-65-02-32392-2 &nbsp;·&nbsp; ISNI 0000 0005 3083 3887 &nbsp;·&nbsp; CIP 26-390087.0<br>
+    <a href="index.html" data-i18n="backhome">Home</a> &nbsp;·&nbsp;
+    <a href="galeria.html" data-i18n="gallerylink">Gallery</a>
+  </p>
+</footer>
+
+<script>
+/* =====================================================================
+   CONFIGURAÇÃO — troque só estas linhas
+   ===================================================================== */
+const CONFIG = {
+  amazon:   "AMAZON_URL_AQUI",          // link do Kindle EN
+  itch:     "ITCH_URL_AQUI",            // página do Átnor Solo
+  author:   "AUTHOR_CENTRAL_URL_AQUI",  // Amazon Author Central
+  mailer:   "MAILERLITE_ACTION_AQUI",   // action do formulário MailerLite
+  heroImg:  "auron-hero-rift.webp",
+  coverEn:  "auron-cover-en.webp",
+  coverPt:  "auron-cover-pt.webp"
+};
+
+/* =====================================================================
+   CAPÍTULOS — títulos canônicos, extraídos dos EPUBs PT e EN
+   ===================================================================== */
+const CHAPTERS = [
+  {n:"I",   en:"The Call of the Inner Rift",        pt:"O Chamado da Fenda Interior",  img:"auron-cap-i.webp"},
+  {n:"II",  en:"The Silence that Listens",          pt:"O Silêncio que Escuta",        img:"auron-cap-ii.webp"},
+  {n:"",    en:"The Song that Makes",               pt:"O Canto que Faz",              img:"auron-cap-iib.webp", unnumbered:true, label:"II-B"},
+  {n:"III", en:"The Map of Archetypes",             pt:"O Mapa dos Arquétipos",        img:"auron-cap-iii.webp"},
+  {n:"IV",  en:"The Flame that Burns Illusions",    pt:"A Chama que Queima Ilusões",   img:"auron-cap-iv.webp"},
+  {n:"V",   en:"The Dream that Dreams the Dreamer", pt:"O Sonho que Sonha o Sonhador", img:"auron-cap-v.webp"},
+  {n:"VI",  en:"The Sacred Game",                   pt:"A Brincadeira Sagrada",        img:"auron-cap-vi.webp"},
+  {n:"VII", en:"The Mountain that Does Not Speak",  pt:"A Montanha que Não Fala",      img:"auron-cap-vii.webp"},
+  {n:"VIII",en:"The Divine Atom in All",            pt:"O Átomo Divino em Todos",      img:"auron-cap-viii.webp"},
+  {n:"IX",  en:"The Anonymous Service",             pt:"O Serviço Anônimo",            img:"auron-cap-ix.webp"},
+  {n:"X",   en:"The Word that Was Missing",         pt:"A Palavra que Faltava",        img:"auron-cap-x.webp"},
+  {n:"XI",  en:"The Awakening of the Serpent",      pt:"O Despertar da Serpente",      img:"auron-cap-xi.webp"},
+  {n:"XII", en:"The Return to Silence",             pt:"O Retorno ao Silêncio",        img:"auron-cap-xii.webp"}
+];
+
+/* =====================================================================
+   TRILHA — títulos como o Rfelipe os nomeou
+   ===================================================================== */
+const SUITE = [
+  {f:"auron-trilha-1.mp3", t:"Abertura — O Menino dos Mapas", d:"2:18"},
+  {f:"auron-trilha-2.mp3", t:"O Chamado — A Serpente se Move", d:"2:34"},
+  {f:"auron-trilha-3.mp3", t:"Encontro com os Companheiros", d:"2:17"},
+  {f:"auron-trilha-4.mp3", t:"Armadilha I — Durga Aham", d:"2:28"}
+];
+const THEMES = [
+  {f:"auron-tema-calma-no-chao.mp3",      t:"A Calma no Chão",       d:"0:31"},
+  {f:"auron-tema-morada-interna.mp3",     t:"A Morada Interna",      d:"0:31"},
+  {f:"auron-tema-fim-e-um-lugar.mp3",     t:"O Fim É Um Lugar",      d:"0:31"},
+  {f:"auron-tema-oceano-que-pulsa.mp3",   t:"O Oceano Que Pulsa",    d:"0:31"},
+  {f:"auron-tema-pulso-de-um-mar.mp3",    t:"O Pulso de um Mar",     d:"0:31"},
+  {f:"auron-tema-onde-a-saga-se-cala.mp3",t:"Onde a Saga se Cala",   d:"0:29"},
+  {f:"auron-tema-preco-de-florescer.mp3", t:"Preço de Florescer",    d:"0:31"},
+  {f:"auron-tema-where-giants-tread.mp3", t:"Where Giants Tread",    d:"0:31"}
+];
+
+/* =====================================================================
+   LUGARES — topônimos canônicos, PT do mapa, EN do EPUB
+   ===================================================================== */
+const PLACES = [
+  {img:"auron-lugar-cristais.webp",
+   en:"Valley of Crystals", pt:"Vale dos Cristais",
+   ende:"Light does not pass through this valley. It stays.",
+   ptde:"A luz não atravessa este vale. Ela fica."},
+  {img:"auron-lugar-vila.webp",
+   en:"Village of Repeated Karma", pt:"Vila do Karma Repetido",
+   ende:"A village with no name, walled against an abyss it pretends not to see.",
+   ptde:"Uma vila sem nome, murada contra um abismo que finge não ver."},
+  {img:"auron-lugar-palpebras.webp", wide:true,
+   en:"Forest of Eyelids", pt:"Floresta das Pálpebras",
+   ende:"Every trunk carries a closed eye. None of them opens while you watch.",
+   ptde:"Cada tronco carrega um olho fechado. Nenhum se abre enquanto você olha."}
+];
+
+/* =====================================================================
+   ELENCO
+   ===================================================================== */
+const FIGURES = [
+  {k:"g",name:"Serena Luminara", en:"The guide. Lilac mantle, amber-green eyes. She does not lead him — she walks beside him until he stops needing her.", pt:"A guia. Manto lilás, olhos verde-âmbar. Ela não o conduz — caminha ao lado até ele não precisar mais dela."},
+  {k:"g",name:"Kaelen Ôm", en:"Master of silence. Galaxies in his eyes, feet off the ground, speaks without sound.", pt:"Mestre do silêncio. Galáxias nos olhos, pés fora do chão, fala sem som."},
+  {k:"g",name:"Theron", en:"The apprentice who came before. Pale, messy bun, white-blue eyes, and a cynicism he earned.", pt:"O aprendiz anterior. Pálido, coque desfeito, olhos branco-azulados, e um cinismo que ele mereceu."},
+  {k:"g",name:"Shalim", en:"Twilight. The guardian who sits on a boundary rather than in a sphere.", pt:"O crepúsculo. O guardião que se senta numa fronteira, não numa esfera."},
+  {k:"g",name:"Vidya Sutra", en:"White hair to the floor, clothes of every colour. Mistress of the hundred and forty-four archetypes.", pt:"Cabelos brancos até o chão, roupas de todas as cores. Senhora dos cento e quarenta e quatro arquétipos."},
+  {k:"g",name:"Rohan Prana", en:"Short, stocky, patched orange tunic. He teaches by laughing, which is harder to survive than it sounds.", pt:"Baixo, atarracado, túnica laranja remendada. Ensina rindo, o que é mais difícil de sobreviver do que parece."},
+  {k:"g",name:"Sila Anahata", en:"Made of granite, knees fused to the mountain. She teaches by listening and nothing else.", pt:"De granito, joelhos fundidos à montanha. Ensina escutando, e mais nada."},
+  {k:"g",name:"Dhara Moksha", en:"Rough hands, knitting apron. Invisible through anonymous service, which is the point.", pt:"Mãos ásperas, avental de tricô. Invisível pelo serviço anônimo — e é exatamente esse o ponto."},
+  {k:"g",name:"Ignis Darshan", en:"Unclothed, tattooed in living fire, ember eyes. He walks on lava and asks what you brought to burn.", pt:"Sem vestes, tatuado em fogo vivo, olhos de brasa. Caminha sobre lava e pergunta o que você trouxe para queimar."},
+  {k:"g",name:"Jyothi Nirvana", en:"White veil, floating silver hair, eyes with no pupil. Her voice arrives as a chord.", pt:"Véu branco, cabelos prateados flutuantes, olhos sem pupila. A voz dela chega como um acorde."},
+  {k:"g",name:"Kriya Akanda", en:"Tall, grey-bearded, dark grey tunic. He wakes the serpent that was always coiled at the base.", pt:"Alto, barba grisalha, túnica cinza-escura. Desperta a serpente que sempre esteve enrolada na base."},
+  {k:"g",name:"Maya Akasa", en:"Outlines that will not hold still, twilight skin. Guardian of dreams and of everything still possible.", pt:"Contornos que não param quietos, pele crepuscular. Guardiã dos sonhos e de tudo que ainda é possível."},
+  {k:"g",name:"Vayú Sutrata", en:"Very thin, parchment skin, clock hands for eyes. He speaks at a frantic speed and never repeats himself.", pt:"Magérrimo, pele de pergaminho, ponteiros de relógio nos olhos. Fala em velocidade frenética e nunca repete."},
+  {k:"t",name:"Mára Vikalpa", en:"An old pilgrim with no shadow and a blue flame. He offers shortcuts, and they work.", pt:"Um velho peregrino sem sombra e com uma chama azul. Oferece atalhos, e eles funcionam."},
+  {k:"t",name:"Durga Aham", en:"A mantle of golden letters — until the end, when it becomes a grey tunic and welling eyes.", pt:"Um manto de letras douradas — até o fim, quando vira túnica cinzenta e olhos marejados."},
+  {k:"t",name:"Tamas Nidra", en:"Soft shapes, the smell of cake and warm milk. He offers rest that has no morning after it.", pt:"Formas macias, cheiro de bolo e leite morno. Oferece um descanso que não tem manhã depois."},
+  {k:"t",name:"Rita Vritta", en:"Thin as a compass, severe bun, the smell of mildew. A victim of knowledge that was never used.", pt:"Fina como um compasso, coque severo, cheiro de mofo. Vítima de um saber que nunca foi usado."},
+  {k:"t",name:"Kali Dvesha", en:"Pale, milky eyes, a dress of tears. She speaks in the voice you use on yourself.", pt:"Pálida, olhos leitosos, vestido de lágrimas. Fala com a voz que você usa contra si mesmo."},
+  {k:"t",name:"Samsara", en:"She appears as a blue-eyed child and reveals herself an old woman. She weaves what you cannot put down.", pt:"Aparece como uma criança de olhos azuis e se revela uma velha. Tece aquilo que você não consegue largar."},
+  {k:"s",name:"Dona Mira", en:"Veridiana, before the rift.", pt:"Veridiana, antes da fenda."},
+  {k:"s",name:"Lian", en:"Veridiana, before the rift.", pt:"Veridiana, antes da fenda."},
+  {k:"s",name:"Auron's mother", nameP:"A mãe de Auron", en:"The letter at the end is hers, and it arrives unsigned.", pt:"A carta do fim é dela, e chega sem assinatura."}
+];
+
+/* =====================================================================
+   TEXTOS
+   ===================================================================== */
+const I18N = {
+  en:{
+    kicker:"The Saga of the Inner Rift",
+    herosub:"Saga I · In Search of the Forgotten Spark",
+    heroline:"The map you are looking for is you.",
+    scrollcue:"ENTER",
+    wheelh:"The Wheel",
+    wheelp:"Thirteen seats. Twelve numbers. The crossing is not a line — it is a circle that closes only when the traveller stops needing it. Touch a seat.",
+    pickprompt:"CHOOSE A SEAT",
+    wheelidle:"Thirteen units, twelve numerals",
+    wheelidlenote:"Between the second seat and the third sits one that carries no number. That was not an oversight.",
+    prologuelbl:"Prologue", prologuetitle:"The Silence that was once Everything",
+    epiloguelbl:"Epilogue", epiloguetitle:"The Silence that never Left",
+    unnumberedNote:"The seat with no numeral. Twelve chapters are counted; this one is lived and left uncounted.",
+    bookh:"Saga I",
+    covercap:"SAGA I · FIRST EDITION · 2026",
+    buyen:"Read on Kindle",
+    tryfree:"Start free",
+    editionnote:"The English edition is on Kindle now. The Portuguese edition follows — join the list and you will hear first.",
+    maph:"The Realm of Átnor",
+    mapp:"The territory Auron crosses, as he himself would have drawn it — had he reached the end of the crossing with a steady enough hand.",
+    close:"CLOSE",
+    auronp:"Thirty-three. A cartographer. Two names on the Hebrew bands at his wrists, and a light in his palms he did not ask for and cannot put down.",
+    turnnote:"Front, side and back — the reference every plate is drawn against.",
+    musich:"The Sound of Átnor",
+    musicp:"Four movements that follow the crossing, and eight themes that circle it. Nothing plays until you ask it to.",
+    suiteh:"The Crossing, in four movements",
+    themesh:"Themes",
+    themesnote:"The themes are thirty-second sketches.",
+    placesh:"Where the Crossing Happens",
+    placesp:"Three of the regions marked on the map, as Auron finds them.",
+    rosterh:"Those Who Wait",
+    rosterp:"Guardians are waiting for him, each with a lesson he never asked for. Others are waiting for something else — and not one of them introduces himself as an enemy.",
+    leg1:"Guardians", leg2:"Tempters", leg3:"Veridiana",
+    soloh:"Átnor Solo — The Silence that Listens",
+    solop:"A solo journalling game cut from the second chapter: you sit with Kaelen Ôm and he asks you the questions he asked Auron. One player, one notebook, one hour. Free.",
+    soloc:"Download the booklet",
+    authorp:"Lior Leal is the pen name of a Brazilian psychologist writing from the coast of Rio de Janeiro. Átnor was built over years from three materials: Jung's individuation, the Kabbalistic tree, and the stubborn conviction that a map is only ever a confession.",
+    authorc:"Author page",
+    joinh:"The map, before anyone else",
+    joinp:"Leave your email and the illustrated map of Átnor arrives at full resolution, along with the first chapter. You will also be the first to know when the Portuguese edition and Book Two are ready.",
+    emaillbl:"Email address", emailph:"you@example.com", joinc:"Send me the map",
+    footline:"Átnor · The Saga of the Inner Rift · Lior Leal",
+    backhome:"Home", gallerylink:"Gallery",
+    coverAlt:"Cover of Saga I — In Search of the Forgotten Spark",
+    blurb:[
+      "Auron Sollis draws borders. It is what he has known how to do since he was nine: when the world grows too large, he reduces it to scale. A cartographer in Veridiana, he spent his life tracing limits — never noticing that he was tracing the walls of his own soul as well.",
+      "On the morning of his thirty-third birthday, a silent earthquake wakes him. It is not the earth that trembles: it is the space inside things. Mirrors give back reflections that do not follow him. And a voice that does not come from outside speaks the one sentence he cannot map.",
+      "On the far side of the rift lies Átnor. Guardians are waiting for him, each with a lesson he never asked for. Others are waiting for something else — and not one of them introduces himself as an enemy.",
+      "What Auron seeks is the Spark. What he finds is harder to carry: the gift never belonged to the one who carries it."
+    ],
+    blurbLast:"The map you are looking for is you."
+  },
+  pt:{
+    kicker:"A Saga da Fenda Interior",
+    herosub:"Saga I · Em Busca da Centelha Perdida",
+    heroline:"O mapa que você procura é você.",
+    scrollcue:"ENTRAR",
+    wheelh:"A Roda",
+    wheelp:"Treze assentos. Doze números. A travessia não é uma linha — é um círculo que só se fecha quando o viajante deixa de precisar dele. Toque um assento.",
+    pickprompt:"ESCOLHA UM ASSENTO",
+    wheelidle:"Treze unidades, doze algarismos",
+    wheelidlenote:"Entre o segundo assento e o terceiro há um que não carrega número. Isso não foi descuido.",
+    prologuelbl:"Prólogo", prologuetitle:"O Silêncio que Antes Era Tudo",
+    epiloguelbl:"Epílogo", epiloguetitle:"O Silêncio que Nunca Partiu",
+    unnumberedNote:"O assento sem algarismo. Doze capítulos são contados; este é vivido e deixado sem conta.",
+    bookh:"Saga I",
+    covercap:"SAGA I · PRIMEIRA EDIÇÃO · 2026",
+    buyen:"Ler no Kindle (inglês)",
+    tryfree:"Comece de graça",
+    editionnote:"A edição em inglês já está no Kindle. A edição em português vem em seguida — entre na lista e você saberá primeiro.",
+    maph:"O Reino de Átnor",
+    mapp:"O território que Auron atravessa, tal como ele próprio o teria desenhado — se tivesse chegado ao fim da travessia com a mão firme o bastante.",
+    close:"FECHAR",
+    auronp:"Trinta e três anos. Cartógrafo. Dois nomes nas faixas hebraicas dos punhos, e uma luz nas palmas que ele não pediu e não consegue largar.",
+    turnnote:"Frente, perfil e costas — a referência contra a qual cada placa é desenhada.",
+    musich:"O Som de Átnor",
+    musicp:"Quatro movimentos que acompanham a travessia, e oito temas que giram em torno dela. Nada toca antes de você pedir.",
+    suiteh:"A travessia, em quatro movimentos",
+    themesh:"Temas",
+    themesnote:"Os temas são esboços de trinta segundos.",
+    placesh:"Onde a Travessia Acontece",
+    placesp:"Três das regiões marcadas no mapa, como Auron as encontra.",
+    rosterh:"Os Que Esperam",
+    rosterp:"Há guardiões à sua espera, cada um com uma lição que ele não pediu. Há também os que o esperam para outra coisa — e nenhum deles se apresenta como inimigo.",
+    leg1:"Guardiões", leg2:"Tentadores", leg3:"Veridiana",
+    soloh:"Átnor Solo — O Silêncio que Escuta",
+    solop:"Um jogo de diário solo recortado do segundo capítulo: você se senta diante de Kaelen Ôm e ele faz a você as perguntas que fez a Auron. Um jogador, um caderno, uma hora. Grátis.",
+    soloc:"Baixar o livreto",
+    authorp:"Lior Leal é o pseudônimo de um psicólogo brasileiro que escreve do litoral do Rio de Janeiro. Átnor foi construído ao longo de anos com três materiais: a individuação junguiana, a árvore cabalística e a convicção teimosa de que todo mapa é, no fundo, uma confissão.",
+    authorc:"Página do autor",
+    joinh:"O mapa, antes de todo mundo",
+    joinp:"Deixe seu e-mail e o mapa ilustrado de Átnor chega em resolução cheia, junto com o primeiro capítulo. Você também será o primeiro a saber quando a edição em português e o Livro Dois estiverem prontos.",
+    emaillbl:"Endereço de e-mail", emailph:"voce@exemplo.com", joinc:"Quero o mapa",
+    footline:"Átnor · A Saga da Fenda Interior · Lior Leal",
+    backhome:"Início", gallerylink:"Galeria",
+    coverAlt:"Capa da Saga I — Em Busca da Centelha Perdida",
+    blurb:[
+      "Auron Sollis desenha fronteiras. É o que sabe fazer desde os nove anos: quando o mundo fica grande demais, ele o reduz à escala. Cartógrafo em Veridiana, passou a vida traçando limites — sem perceber que traçava também as muralhas da própria alma.",
+      "Na manhã do trigésimo terceiro aniversário, um terremoto silencioso o desperta. Não é a terra que treme: é o espaço dentro das coisas. Espelhos devolvem reflexos que não o acompanham. E uma voz que não vem de fora diz a única frase que ele não sabe cartografar.",
+      "Do outro lado da fenda está Átnor. Há guardiões à sua espera, cada um com uma lição que ele não pediu. Há também os que o esperam para outra coisa — e nenhum deles se apresenta como inimigo.",
+      "O que Auron procura é a Centelha. O que encontra é mais difícil de carregar: o dom nunca pertenceu a quem o carrega."
+    ],
+    blurbLast:"O mapa que você procura é você."
+  }
+};
+
+/* =====================================================================
+   BUILD
+   ===================================================================== */
+let LANG = (new URLSearchParams(location.search).get("lang") === "pt") ? "pt" : "en";
+let activeSeat = null;
+
+// hero background
+document.getElementById("heroBg").style.backgroundImage = "url('" + CONFIG.heroImg + "')";
+document.getElementById("buyBtn").href = CONFIG.amazon;
+document.querySelector('[data-i18n="soloc"]').href = CONFIG.itch;
+document.querySelector('[data-i18n="authorc"]').href = CONFIG.author;
+document.getElementById("signupForm").action = CONFIG.mailer;
+
+// --- wheel ---
+(function buildWheel(){
+  const g = document.getElementById("seats");
+  const CX = 300, CY = 300, R = 212, Rin = 168;
+  const numbered = CHAPTERS.filter(c => !c.unnumbered);
+
+  CHAPTERS.forEach((ch) => {
+    let idx, r;
+    if (ch.unnumbered) {
+      idx = 1.5; r = Rin;           // sits between seat II and seat III, drawn inward
+    } else {
+      idx = numbered.indexOf(ch); r = R;
+    }
+    const a = (-90 + idx * 30) * Math.PI / 180;
+    const x = CX + r * Math.cos(a), y = CY + r * Math.sin(a);
+
+    const seat = document.createElementNS("http://www.w3.org/2000/svg","g");
+    seat.setAttribute("class","seat" + (ch.unnumbered ? " unnumbered" : ""));
+    seat.setAttribute("tabindex","0");
+    seat.setAttribute("role","button");
+
+    const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+    c.setAttribute("cx",x); c.setAttribute("cy",y); c.setAttribute("r", ch.unnumbered ? 17 : 24);
+
+    const t = document.createElementNS("http://www.w3.org/2000/svg","text");
+    t.setAttribute("x",x); t.setAttribute("y",y+1);
+    t.textContent = ch.n;
+    if (ch.unnumbered) t.setAttribute("font-size","11");
+
+    seat.appendChild(c); seat.appendChild(t);
+    seat.addEventListener("click", () => selectSeat(seat, ch));
+    seat.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectSeat(seat, ch); }
+    });
+    g.appendChild(seat);
+  });
+})();
+
+let activeChapter = null;
+
+function selectSeat(el, ch){
+  if (activeSeat) activeSeat.classList.remove("is-on");
+  el.classList.add("is-on");
+  activeSeat = el; activeChapter = ch;
+  const T = I18N[LANG];
+
+  document.getElementById("chapnum").textContent =
+    ch.unnumbered ? (LANG === "pt" ? "SEM NÚMERO · II-B" : "NO NUMERAL · II-B")
+                  : (LANG === "pt" ? "CAPÍTULO " + ch.n : "CHAPTER " + ch.n);
+  document.getElementById("chaptitle").textContent = ch[LANG];
+  document.getElementById("chapnote").textContent =
+    ch.unnumbered ? T.unnumberedNote
+                  : (LANG === "pt" ? "Assento " + ch.n + " de doze." : "Seat " + ch.n + " of twelve.");
+
+  const btn = document.getElementById("plateBtn");
+  const img = document.getElementById("plateImg");
+  if (ch.img) {
+    img.src = ch.img;
+    img.alt = (LANG === "pt" ? "Placa do " : "Plate for ") +
+              (ch.unnumbered ? "Capítulo II-B" : (LANG === "pt" ? "Capítulo " : "Chapter ") + ch.n);
+    btn.hidden = false;
+  } else {
+    btn.hidden = true;
+  }
+}
+
+// --- language ---
+function applyLang(){
+  const T = I18N[LANG];
+  document.documentElement.lang = (LANG === "pt") ? "pt-BR" : "en";
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const k = el.getAttribute("data-i18n");
+    if (T[k] !== undefined && typeof T[k] === "string") el.textContent = T[k];
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+    el.placeholder = T[el.getAttribute("data-i18n-ph")];
+  });
+
+  document.getElementById("blurb").innerHTML =
+    T.blurb.map(p => "<p>" + p + "</p>").join("") +
+    '<p class="last">' + T.blurbLast + "</p>";
+
+  const cover = document.getElementById("coverImg");
+  cover.src = (LANG === "pt") ? CONFIG.coverPt : CONFIG.coverEn;
+  cover.alt = T.coverAlt;
+
+  document.title = (LANG === "pt")
+    ? "Átnor — A Saga da Fenda Interior · Lior Leal"
+    : "Átnor — The Saga of the Inner Rift · Lior Leal";
+
+  document.querySelectorAll(".langbar button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
+
+  buildRoster2();
+  buildPlaces();
+  if (activeSeat) activeSeat.classList.remove("is-on");
+  activeSeat = null; activeChapter = null;
+  document.getElementById("plateBtn").hidden = true;
+}
+function buildPlaces(){
+  document.getElementById("placesGrid").innerHTML = PLACES.map((p,i) =>
+    '<figure class="place' + (p.wide ? ' wide' : '') + '">' +
+      '<button type="button" data-place="' + i + '">' +
+        '<img src="' + p.img + '" alt="' + p[LANG] + '" loading="lazy">' +
+      '</button>' +
+      '<figcaption><h4>' + p[LANG] + '</h4><p>' + p[LANG === "pt" ? "ptde" : "ende"] + '</p></figcaption>' +
+    '</figure>').join("");
+  document.querySelectorAll("[data-place]").forEach(b => {
+    b.addEventListener("click", () => {
+      const p = PLACES[+b.dataset.place];
+      openLightbox(p.img, p[LANG]);
+    });
+  });
+}
+
+function buildRoster2(){
+  document.getElementById("roster").innerHTML = FIGURES.map(f => {
+    const nm = (LANG === "pt" && f.nameP) ? f.nameP : f.name;
+    return '<article class="fig" data-kind="' + f.k + '"><h4>' + nm + '</h4><p>' + f[LANG] + '</p></article>';
+  }).join("");
+}
+document.querySelectorAll(".langbar button").forEach(b => {
+  b.addEventListener("click", () => { LANG = b.dataset.lang; applyLang(); });
+});
+
+/* --- player --- */
+const audio    = document.getElementById("audio");
+const player   = document.getElementById("player");
+const plToggle = document.getElementById("plToggle");
+const plTitle  = document.getElementById("plTitle");
+const plFill   = document.getElementById("plFill");
+const plTime   = document.getElementById("plTime");
+const plBar    = document.getElementById("plBar");
+
+function fmt(s){
+  if (!isFinite(s)) return "0:00";
+  const m = Math.floor(s / 60), r = Math.floor(s % 60);
+  return m + ":" + String(r).padStart(2, "0");
+}
+
+function buildTracks(){
+  document.getElementById("suiteList").innerHTML = SUITE.map((t,i) =>
+    '<li><button type="button" data-src="' + t.f + '" data-t="' + t.t + '">' +
+      '<span class="idx">' + (i+1) + '</span><span class="nm">' + t.t + '</span>' +
+      '<span class="dur">' + t.d + '</span></button></li>').join("");
+  document.getElementById("themeList").innerHTML = THEMES.map(t =>
+    '<li><button type="button" data-src="' + t.f + '" data-t="' + t.t + '">' +
+      '<span class="idx">·</span><span class="nm">' + t.t + '</span>' +
+      '<span class="dur">' + t.d + '</span></button></li>').join("");
+
+  document.querySelectorAll("[data-src]").forEach(b => {
+    b.addEventListener("click", () => {
+      if (audio.src.endsWith(b.dataset.src) && !audio.paused) { audio.pause(); return; }
+      if (!audio.src.endsWith(b.dataset.src)) {
+        audio.src = b.dataset.src;
+        plTitle.textContent = b.dataset.t;
+        plFill.style.width = "0";
+      }
+      player.hidden = false;
+      audio.play();
+      document.querySelectorAll("[data-src]").forEach(o =>
+        o.setAttribute("aria-current", String(o === b)));
+    });
+  });
+}
+
+audio.addEventListener("timeupdate", () => {
+  if (audio.duration) plFill.style.width = (audio.currentTime / audio.duration * 100) + "%";
+  plTime.textContent = fmt(audio.currentTime);
+});
+audio.addEventListener("play",  () => plToggle.textContent = "❚❚");
+audio.addEventListener("pause", () => plToggle.textContent = "▶");
+audio.addEventListener("ended", () => {
+  const cur = document.querySelector('[aria-current="true"]');
+  const next = cur && cur.closest("li").nextElementSibling;
+  if (next) next.querySelector("button").click();
+});
+plToggle.addEventListener("click", () => audio.paused ? audio.play() : audio.pause());
+plBar.addEventListener("click", e => {
+  if (!audio.duration) return;
+  const r = plBar.getBoundingClientRect();
+  audio.currentTime = (e.clientX - r.left) / r.width * audio.duration;
+});
+
+buildTracks();
+
+// --- misc ---
+document.querySelector(".scrollcue").addEventListener("click", e => {
+  document.querySelector(e.currentTarget.dataset.scroll).scrollIntoView({behavior:"smooth"});
+});
+const lb = document.getElementById("lightbox");
+const lbImg = lb.querySelector("img");
+function openLightbox(src, alt){
+  lbImg.src = src; lbImg.alt = alt || "";
+  lb.classList.add("on"); document.getElementById("lbClose").focus();
+}
+document.getElementById("mapBtn").addEventListener("click", () => {
+  openLightbox("auron-map-atnor.webp", I18N[LANG].maph);
+});
+document.getElementById("turnBtn").addEventListener("click", () => {
+  openLightbox("auron-turnaround.webp", "Auron Sollis");
+});
+document.getElementById("plateBtn").addEventListener("click", () => {
+  if (activeChapter && activeChapter.img)
+    openLightbox(activeChapter.img, document.getElementById("plateImg").alt);
+});
+document.getElementById("lbClose").addEventListener("click", () => lb.classList.remove("on"));
+lb.addEventListener("click", e => { if (e.target === lb) lb.classList.remove("on"); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") lb.classList.remove("on"); });
+
+applyLang();
+</script>
+</body>
+</html>

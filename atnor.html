@@ -89,7 +89,7 @@ body{
 h1,h2,h3,.disp{font-family:Cinzel,Georgia,serif;font-weight:600;letter-spacing:.04em;line-height:1.22;color:var(--gold-hi)}
 p{max-width:38em}
 a{color:var(--gold-hi)}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 
 /* ---------- language switch ---------- */
 .langbar{position:fixed;top:0;right:0;z-index:60;display:flex;gap:0;
@@ -104,7 +104,11 @@ img{max-width:100%;display:block}
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background:#0d0906 center/cover no-repeat}
-.hero-bg::after{content:"";position:absolute;inset:0;
+.hero-video{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 1.2s ease}
+.hero-video.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.hero-video{display:none}}
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:1;
   background:radial-gradient(ellipse at 50% 42%,rgba(23,16,12,.18) 0%,rgba(23,16,12,.72) 58%,var(--ink) 100%)}
 .hero-inner{position:relative;z-index:2;padding:6rem 1.5rem 5rem;max-width:52rem}
 .kicker{font-family:Cinzel,serif;font-size:clamp(.62rem,1.6vw,.78rem);letter-spacing:.42em;
@@ -240,6 +244,23 @@ h2{font-size:clamp(1.5rem,4vw,2.3rem);margin:0 0 .6rem}
 .turnaround img{width:100%}
 .turnaround:hover{border-color:var(--gold)}
 
+/* ---------- auron ---------- */
+.auronsec{background:var(--ink);text-align:center;padding-top:0}
+.auronsec .lede{margin:0 auto}
+.auron-wide{margin:0 0 clamp(3rem,7vw,5rem)}
+.auron-wide button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.auron-wide img{width:100%}
+.auron-grid{display:grid;gap:1.4rem;margin-top:2.8rem;grid-template-columns:1fr}
+@media(min-width:700px){.auron-grid{grid-template-columns:1fr 1fr 1fr}}
+.auron-grid figure{margin:0;border:1px solid var(--rule);background:#120C08;padding:.5rem}
+.auron-grid button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.auron-grid img{width:100%}
+.auron-grid figcaption{font-family:Cinzel,serif;font-size:.66rem;letter-spacing:.16em;
+  color:var(--parch-dim);padding:.85rem .3rem .35rem}
+.auron-grid figure:hover{border-color:var(--gold)}
+.auron-grid .span2{grid-column:span 1}
+@media(min-width:700px){.auron-grid .span2{grid-column:span 3}}
+
 /* ---------- roster ---------- */
 .rosterbanner{display:block;margin:0 0 2.4rem;border:1px solid var(--rule);
   background:#120C08;padding:.5rem}
@@ -288,7 +309,10 @@ footer a{color:var(--parch-dim)}
 
 <!-- ============ HERO ============ -->
 <header class="hero">
-  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-bg" id="heroBg">
+    <video id="heroVideo" class="hero-video" playsinline muted loop preload="metadata"
+           poster="auron-hero-poster.webp" aria-hidden="true" tabindex="-1"></video>
+  </div>
   <div class="hero-inner">
     <p class="kicker" data-i18n="kicker">The Saga of the Inner Rift</p>
     <h1>Átnor</h1>
@@ -333,7 +357,7 @@ footer a{color:var(--parch-dim)}
   <div class="wrap">
     <div class="bookgrid">
       <figure class="coverfig">
-        <img id="coverImg" src="auron-cover-en.webp" alt="Cover of Saga I — In Search of the Forgotten Spark" width="900" height="1260" loading="lazy">
+        <img id="coverImg" src="auron-cover-en.webp" alt="Cover of Saga I — In Search of the Forgotten Spark" width="900" height="1350" loading="lazy">
         <figcaption data-i18n="covercap">Saga I · First edition · 2026</figcaption>
       </figure>
       <div>
@@ -405,13 +429,15 @@ footer a{color:var(--parch-dim)}
 
 <!-- ============ AURON ============ -->
 <section id="auron" class="auronsec">
+  <figure class="auron-wide">
+    <button type="button" data-fig="auron-cinematico.webp" data-alt="Auron Sollis">
+      <img src="auron-cinematico.webp" alt="Auron Sollis beneath a storm, hands lit" width="1800" height="1005" loading="lazy">
+    </button>
+  </figure>
   <div class="wrap">
     <h2>Auron Sollis</h2>
-    <p class="lede" data-i18n="auronp">Thirty-three. A cartographer. Two names on the Hebrew bands at his wrists, and a light in his palms he did not ask for and cannot put down.</p>
-    <button class="turnaround" type="button" id="turnBtn">
-      <img src="auron-turnaround.webp" alt="Auron Sollis — front, side and back" width="1400" height="933" loading="lazy">
-    </button>
-    <p class="note center" data-i18n="turnnote">Front, side and back — the reference every plate is drawn against.</p>
+    <p class="lede center" data-i18n="auronp">Thirty-three. A cartographer. Two names on the Hebrew bands at his wrists, and a light in his palms he did not ask for and cannot put down.</p>
+    <div class="auron-grid" id="auronGrid"></div>
   </div>
 </section>
 
@@ -480,7 +506,9 @@ const CONFIG = {
   itch:     "ITCH_URL_AQUI",            // página do Átnor Solo
   author:   "AUTHOR_CENTRAL_URL_AQUI",  // Amazon Author Central
   mailer:   "MAILERLITE_ACTION_AQUI",   // action do formulário MailerLite
-  heroImg:  "auron-hero-rift.webp",
+  heroImg:  "auron-hero-rift.webp",   // imagem de fundo, atrás do vídeo
+  heroVideo:"auron-hero.mp4",         // vídeo de fundo do hero; deixe "" para desligar
+
   coverEn:  "auron-cover-en.webp",
   coverPt:  "auron-cover-pt.webp"
 };
@@ -596,7 +624,6 @@ const I18N = {
     mapp:"The territory Auron crosses, as he himself would have drawn it — had he reached the end of the crossing with a steady enough hand.",
     close:"CLOSE",
     auronp:"Thirty-three. A cartographer. Two names on the Hebrew bands at his wrists, and a light in his palms he did not ask for and cannot put down.",
-    turnnote:"Front, side and back — the reference every plate is drawn against.",
     musich:"The Sound of Átnor",
     musicp:"Four movements that follow the crossing, and eight themes that circle it. Nothing plays until you ask it to.",
     suiteh:"The Crossing, in four movements",
@@ -648,7 +675,6 @@ const I18N = {
     mapp:"O território que Auron atravessa, tal como ele próprio o teria desenhado — se tivesse chegado ao fim da travessia com a mão firme o bastante.",
     close:"FECHAR",
     auronp:"Trinta e três anos. Cartógrafo. Dois nomes nas faixas hebraicas dos punhos, e uma luz nas palmas que ele não pediu e não consegue largar.",
-    turnnote:"Frente, perfil e costas — a referência contra a qual cada placa é desenhada.",
     musich:"O Som de Átnor",
     musicp:"Quatro movimentos que acompanham a travessia, e oito temas que giram em torno dela. Nada toca antes de você pedir.",
     suiteh:"A travessia, em quatro movimentos",
@@ -688,6 +714,26 @@ let activeSeat = null;
 
 // hero background
 document.getElementById("heroBg").style.backgroundImage = "url('" + CONFIG.heroImg + "')";
+
+/* Vídeo de fundo: só entra depois de carregar o bastante para rodar sem engasgo,
+   e nunca em quem pediu menos movimento ou está economizando dados. */
+(function heroBackgroundVideo(){
+  const v = document.getElementById("heroVideo");
+  if (!CONFIG.heroVideo) { v.remove(); return; }
+  const semMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const conn = navigator.connection || {};
+  const economizando = conn.saveData === true ||
+                       ["slow-2g","2g","3g"].indexOf(conn.effectiveType) !== -1;
+  if (semMovimento || economizando) { v.remove(); return; }
+
+  v.src = CONFIG.heroVideo;
+  v.addEventListener("canplaythrough", () => {
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});   // navegador barrou o autoplay: fica a imagem
+    v.classList.add("on");
+  }, { once: true });
+  v.addEventListener("error", () => v.remove(), { once: true });
+})();
 document.getElementById("buyBtn").href = CONFIG.amazon;
 document.querySelector('[data-i18n="soloc"]').href = CONFIG.itch;
 document.querySelector('[data-i18n="authorc"]').href = CONFIG.author;
@@ -788,6 +834,7 @@ function applyLang(){
 
   buildRoster2();
   buildPlaces();
+  buildAuron();
   if (activeSeat) activeSeat.classList.remove("is-on");
   activeSeat = null; activeChapter = null;
   document.getElementById("plateBtn").hidden = true;
@@ -805,6 +852,34 @@ function buildPlaces(){
       const p = PLACES[+b.dataset.place];
       openLightbox(p.img, p[LANG]);
     });
+  });
+}
+
+const AURON_ART = [
+  {img:"auron-retrato.webp",    en:"THE CARTOGRAPHER", pt:"O CARTÓGRAFO"},
+  {img:"auron-limiar.webp",     en:"THE THRESHOLD",     pt:"O LIMIAR"},
+  {img:"auron-cap-i.webp",      en:"THE CALL",          pt:"O CHAMADO"},
+  {img:"auron-descanso.webp",   en:"THE REST",           pt:"O DESCANSO"},
+  {img:"auron-de-costas.webp",  en:"THE OPEN ROAD",      pt:"O CAMINHO ABERTO"},
+  {img:"auron-turnaround.webp", en:"FRONT, SIDE AND BACK", pt:"FRENTE, PERFIL E COSTAS", span:true}
+];
+
+function buildAuron(){
+  document.getElementById("auronGrid").innerHTML = AURON_ART.map(a =>
+    '<figure' + (a.span ? ' class="span2"' : '') + '>' +
+      '<button type="button" data-fig="' + a.img + '" data-alt="' + a[LANG] + '">' +
+        '<img src="' + a.img + '" alt="' + a[LANG] + '" loading="lazy">' +
+      '</button>' +
+      '<figcaption>' + a[LANG] + '</figcaption>' +
+    '</figure>').join("");
+  bindFigs();
+}
+
+function bindFigs(){
+  document.querySelectorAll("[data-fig]").forEach(b => {
+    if (b.dataset.bound) return;
+    b.dataset.bound = "1";
+    b.addEventListener("click", () => openLightbox(b.dataset.fig, b.dataset.alt));
   });
 }
 
@@ -891,9 +966,6 @@ function openLightbox(src, alt){
 }
 document.getElementById("mapBtn").addEventListener("click", () => {
   openLightbox("auron-map-atnor.webp", I18N[LANG].maph);
-});
-document.getElementById("turnBtn").addEventListener("click", () => {
-  openLightbox("auron-turnaround.webp", "Auron Sollis");
 });
 document.getElementById("plateBtn").addEventListener("click", () => {
   if (activeChapter && activeChapter.img)

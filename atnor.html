@@ -157,7 +157,8 @@ img{max-width:100%;height:auto;display:block}
 .scrollcue:hover{color:var(--gold-hi)}
 
 /* ---------- sections ---------- */
-section{padding:clamp(4.5rem,10vw,8rem) 1.5rem}
+section{padding:clamp(4.5rem,10vw,8rem) 1.5rem;scroll-margin-top:3.2rem}
+#wheel,#book,#map,#places,#music,#auron,#figures,#solo,#join{scroll-margin-top:3.2rem}
 .wrap{max-width:var(--maxw);margin:0 auto}
 .center{text-align:center}
 .center p{margin-left:auto;margin-right:auto}
@@ -900,6 +901,7 @@ function selectSeat(el, ch){
   const btn = document.getElementById("plateBtn");
   const img = document.getElementById("plateImg");
   if (ch.img) {
+    img.onerror = () => { btn.hidden = true; };
     img.src = ch.img;
     img.alt = (LANG === "pt" ? "Placa do " : "Plate for ") +
               (ch.unnumbered ? "Capítulo II-B" : (LANG === "pt" ? "Capítulo " : "Chapter ") + ch.n);
@@ -937,10 +939,10 @@ function applyLang(){
     b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
 
   applyBuy(T);
-  syncUrl();
   buildRoster2();
   buildPlaces();
   buildAuron();
+  syncUrl();
   if (activeSeat) activeSeat.classList.remove("is-on");
   activeSeat = null; activeChapter = null;
   document.getElementById("plateBtn").hidden = true;
@@ -978,13 +980,21 @@ function applyBuy(T){
 /* Mantém ?lang= na barra de endereço, para o link compartilhado abrir certo. */
 function syncUrl(){
   try { localStorage.setItem("atnor-lang", LANG); } catch(e){}
-  const u = new URL(location.href);
-  u.searchParams.set("lang", LANG);
-  history.replaceState(null, "", u);
-  const canon = document.querySelector('link[rel="canonical"]');
-  if (canon) canon.href = u.href;
-  const ogu = document.querySelector('meta[property="og:url"]');
-  if (ogu) ogu.content = u.href;
+
+  /* Em preview (about:srcdoc) ou em file:// o navegador barra o replaceState.
+     Isso não pode derrubar o resto da página, então cada passo é isolado. */
+  try {
+    if (location.protocol === "http:" || location.protocol === "https:") {
+      const u = new URL(location.href);
+      u.searchParams.set("lang", LANG);
+      history.replaceState(null, "", u);
+      const canon = document.querySelector('link[rel="canonical"]');
+      if (canon) canon.href = u.href;
+      const ogu = document.querySelector('meta[property="og:url"]');
+      if (ogu) ogu.content = u.href;
+    }
+  } catch (e) { /* preview: segue sem mexer na URL */ }
+
   const desc = document.querySelector('meta[name="description"]');
   if (desc) desc.content = I18N[LANG].blurb[0];
   const ogt = document.querySelector('meta[property="og:title"]');
@@ -1164,8 +1174,9 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbo
 document.addEventListener("error", e => {
   const img = e.target;
   if (!img || img.tagName !== "IMG") return;
-  const fig = img.closest("figure");
-  if (fig) fig.hidden = true; else img.hidden = true;
+  const box = img.closest("figure, picture, .plate, .mapframe, .rosterbanner");
+  if (box) box.hidden = true; else img.hidden = true;
+  console.warn("Átnor: imagem não encontrada no repositório —", img.getAttribute("src"));
 }, true);
 
 applyLang();

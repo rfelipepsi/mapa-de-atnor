@@ -17,9 +17,11 @@
 <meta property="og:image" content="https://rfelipepsi.github.io/mapa-de-atnor/auron-og.jpg">
 <meta property="og:url" content="https://rfelipepsi.github.io/mapa-de-atnor/atnor.html">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#17100C">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="800">
 
+<link rel="preload" as="image" href="auron-hero-rift.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -27,36 +29,42 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "In Search of the Forgotten Spark",
-  "alternateName": "Em Busca da Centelha Perdida",
-  "inLanguage": "en",
-  "bookEdition": "1",
-  "bookFormat": "https://schema.org/EBook",
-  "numberOfPages": null,
-  "isPartOf": {
-    "@type": "BookSeries",
-    "name": "The Saga of the Inner Rift",
-    "alternateName": "A Saga da Fenda Interior"
-  },
-  "position": 1,
+  "@type": "BookSeries",
+  "name": "The Saga of the Inner Rift",
+  "alternateName": "A Saga da Fenda Interior",
+  "url": "https://rfelipepsi.github.io/mapa-de-atnor/atnor.html",
   "author": {
     "@type": "Person",
     "name": "Lior Leal",
-    "identifier": "https://isni.org/isni/0000000530833887"
+    "identifier": "https://isni.org/isni/0000000530833887",
+    "sameAs": "https://isni.org/isni/0000000530833887"
   },
-  "workExample": [
+  "genre": ["Metaphysical fiction", "Fantasy", "Mysticism"],
+  "about": "An initiatory journey through the realm of \u00c1tnor.",
+  "hasPart": [
     {
       "@type": "Book",
-      "inLanguage": "pt-BR",
+      "name": "In Search of the Forgotten Spark",
+      "inLanguage": "en",
+      "position": 1,
+      "bookEdition": "1",
+      "bookFormat": "https://schema.org/EBook",
+      "datePublished": "2026-08-30",
+      "author": { "@type": "Person", "name": "Lior Leal" }
+    },
+    {
+      "@type": "Book",
       "name": "Em Busca da Centelha Perdida",
+      "inLanguage": "pt-BR",
+      "position": 1,
+      "bookEdition": "1",
       "isbn": "978-65-02-32392-2",
       "bookFormat": "https://schema.org/EBook",
-      "publisher": { "@type": "Organization", "name": "Lior Leal" }
+      "datePublished": "2026-09-01",
+      "publisher": { "@type": "Organization", "name": "Lior Leal" },
+      "author": { "@type": "Person", "name": "Lior Leal" }
     }
-  ],
-  "genre": ["Metaphysical fiction", "Fantasy", "Mysticism"],
-  "about": "An initiatory journey through the realm of Átnor."
+  ]
 }
 </script>
 
@@ -90,6 +98,29 @@ h1,h2,h3,.disp{font-family:Cinzel,Georgia,serif;font-weight:600;letter-spacing:.
 p{max-width:38em}
 a{color:var(--gold-hi)}
 img{max-width:100%;height:auto;display:block}
+
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;
+  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.skip{position:absolute;left:-9999px;top:0;z-index:90;background:var(--gold);color:var(--ink);
+  font-family:Cinzel,serif;font-size:.75rem;letter-spacing:.14em;padding:.8rem 1.2rem}
+.skip:focus{left:0}
+
+/* ---------- section nav ---------- */
+.sectnav{position:fixed;top:0;left:0;right:0;z-index:50;height:2.9rem;
+  display:flex;align-items:center;gap:0;overflow-x:auto;overflow-y:hidden;
+  background:rgba(18,12,8,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);
+  padding:0 8.5rem 0 .6rem;scrollbar-width:none;
+  opacity:0;transform:translateY(-100%);transition:opacity .3s ease,transform .3s ease;
+  pointer-events:none}
+.sectnav::-webkit-scrollbar{display:none}
+.sectnav.on{opacity:1;transform:none;pointer-events:auto}
+.sectnav a{font-family:Cinzel,serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--parch-dim);text-decoration:none;padding:.9rem .75rem;white-space:nowrap;flex:none;
+  transition:color .15s}
+.sectnav a:hover{color:var(--gold-hi)}
+.sectnav a.navbuy{color:var(--gold);border:1px solid var(--rule);padding:.42rem .9rem;margin-left:.5rem}
+.sectnav a.navbuy:hover{background:var(--gold);color:var(--ink)}
+@media(max-width:640px){.sectnav{padding-right:6.5rem}}
 
 /* ---------- language switch ---------- */
 .langbar{position:fixed;top:0;right:0;z-index:60;display:flex;gap:0;
@@ -181,6 +212,11 @@ h2{font-size:clamp(1.5rem,4vw,2.3rem);margin:0 0 .6rem}
 .cta.ghost{background:none;color:var(--gold-hi);border-color:var(--rule)}
 .cta.ghost:hover{background:rgba(201,162,74,.12)}
 .ctarow{display:flex;flex-wrap:wrap;gap:.9rem;margin:1.8rem 0 1rem;align-items:center}
+.priceline{font-family:Cinzel,serif;font-size:.7rem;letter-spacing:.2em;color:var(--gold);
+  margin:0 0 1.4rem}
+.ku{display:inline-block;font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.16em;
+  color:var(--parch-dim);border:1px solid var(--rule);padding:.3rem .6rem;margin-left:.6rem;
+  vertical-align:middle}
 .note{font-size:.9rem;color:var(--parch-dim)}
 
 /* ---------- map ---------- */
@@ -223,7 +259,7 @@ h2{font-size:clamp(1.5rem,4vw,2.3rem);margin:0 0 .6rem}
 .tracks .dur{font-size:.82rem;color:var(--parch-dim);flex:none}
 .suite button[aria-current="true"] .idx{color:var(--gold-hi)}
 
-.player{position:sticky;top:0;z-index:40;background:rgba(23,16,12,.94);backdrop-filter:blur(8px);
+.player{position:sticky;top:2.9rem;z-index:40;background:rgba(23,16,12,.94);backdrop-filter:blur(8px);
   border:1px solid var(--rule);padding:.9rem 1.1rem;margin-top:2.4rem}
 .pl-now{display:flex;align-items:center;gap:1rem}
 .pl-toggle{flex:none;width:2.6rem;height:2.6rem;border-radius:50%;border:1px solid var(--gold);
@@ -302,6 +338,19 @@ footer a{color:var(--parch-dim)}
 </head>
 <body>
 
+<a class="skip" href="#wheel" id="skipLink">Skip to content</a>
+
+<nav class="sectnav" id="sectnav" aria-label="Sections">
+  <a href="#wheel"   data-i18n="navwheel">Wheel</a>
+  <a href="#book"    data-i18n="navbook">The Book</a>
+  <a href="#map"     data-i18n="navmap">Map</a>
+  <a href="#places"  data-i18n="navplaces">Places</a>
+  <a href="#music"   data-i18n="navmusic">Sound</a>
+  <a href="#auron"   data-i18n="navauron">Auron</a>
+  <a href="#figures" data-i18n="navfigures">Figures</a>
+  <a href="#book" class="navbuy" id="navBuy" data-i18n="navbuy">Kindle</a>
+</nav>
+
 <nav class="langbar" aria-label="Language">
   <button type="button" data-lang="en" aria-pressed="true">EN</button>
   <button type="button" data-lang="pt" aria-pressed="false">PT</button>
@@ -363,11 +412,13 @@ footer a{color:var(--parch-dim)}
       <div>
         <h2 data-i18n="bookh">Saga I</h2>
         <div class="blurb" id="blurb"></div>
+        <p class="priceline" id="priceLine"></p>
         <div class="ctarow">
-          <a class="cta" id="buyBtn" href="AMAZON_URL_AQUI" target="_blank" rel="noopener" data-i18n="buyen">Read on Kindle</a>
+          <a class="cta" id="buyPrimary" target="_blank" rel="noopener"></a>
+          <a class="cta ghost" id="buySecondary" target="_blank" rel="noopener"></a>
           <a class="cta ghost" href="#solo" data-i18n="tryfree">Start free</a>
         </div>
-        <p class="note" id="editionNote" data-i18n="editionnote">The English edition is available now on Kindle. The Portuguese edition follows — join the list below and you will hear first.</p>
+        <p class="note" id="editionNote" data-i18n="editionnote">Both editions are on Kindle now, and free to read on Kindle Unlimited.</p>
       </div>
     </div>
   </div>
@@ -465,12 +516,12 @@ footer a{color:var(--parch-dim)}
     <div class="card">
       <h3 data-i18n="soloh">Átnor Solo — The Silence that Listens</h3>
       <p data-i18n="solop">A solo journalling game cut from the second chapter: you sit with Kaelen Ôm and he asks you the questions he asked Auron. One player, one notebook, one hour. Free.</p>
-      <p style="margin-top:1.4rem"><a class="cta ghost" href="ITCH_URL_AQUI" target="_blank" rel="noopener" data-i18n="soloc">Download the booklet</a></p>
+      <p style="margin-top:1.4rem"><a class="cta ghost" id="soloBtn" target="_blank" rel="noopener" data-i18n="soloc">Download the booklet</a></p>
     </div>
     <div class="card">
       <h3>Lior Leal</h3>
       <p data-i18n="authorp">Lior Leal is the pen name of a Brazilian psychologist writing from the coast of Rio de Janeiro. Átnor was built over years from three materials: Jung's individuation, the Kabbalistic tree, and the stubborn conviction that a map is only ever a confession.</p>
-      <p style="margin-top:1.4rem"><a class="cta ghost" href="AUTHOR_CENTRAL_URL_AQUI" target="_blank" rel="noopener" data-i18n="authorc">Author page</a></p>
+      <p style="margin-top:1.4rem"><a class="cta ghost" id="authorBtn" target="_blank" rel="noopener" data-i18n="authorc">Author page</a></p>
     </div>
   </div>
 </section>
@@ -480,8 +531,8 @@ footer a{color:var(--parch-dim)}
   <div class="wrap center">
     <h2 data-i18n="joinh">The map, before anyone else</h2>
     <p class="lede" data-i18n="joinp">Leave your email and the illustrated map of Átnor arrives at full resolution, along with the first chapter. You will also be the first to know when the Portuguese edition and Book Two are ready.</p>
-    <form class="signupform" id="signupForm" action="MAILERLITE_ACTION_AQUI" method="post" target="_blank">
-      <label for="emailField" class="visually-hidden" style="position:absolute;left:-9999px" data-i18n="emaillbl">Email address</label>
+    <form class="signupform" id="signupForm" method="post" target="_blank">
+      <label for="emailField" class="visually-hidden" data-i18n="emaillbl">Email address</label>
       <input id="emailField" type="email" name="fields[email]" required placeholder="you@example.com" data-i18n-ph="emailph">
       <button type="submit" data-i18n="joinc">Send me the map</button>
     </form>
@@ -493,7 +544,8 @@ footer a{color:var(--parch-dim)}
   <p class="biblio">
     ISBN 978-65-02-32392-2 &nbsp;·&nbsp; ISNI 0000 0005 3083 3887 &nbsp;·&nbsp; CIP 26-390087.0<br>
     <a href="index.html" data-i18n="backhome">Home</a> &nbsp;·&nbsp;
-    <a href="galeria.html" data-i18n="gallerylink">Gallery</a>
+    <a href="galeria.html" data-i18n="gallerylink">Gallery</a><br>
+    <span data-i18n="aidisclosure">Cover and interior plates were produced with AI image tools and finished by hand.</span>
   </p>
 </footer>
 
@@ -502,10 +554,19 @@ footer a{color:var(--parch-dim)}
    CONFIGURAÇÃO — troque só estas linhas
    ===================================================================== */
 const CONFIG = {
-  amazon:   "AMAZON_URL_AQUI",          // link do Kindle EN
+  // Links. Qualquer um que terminar em _AQUI faz o botão sumir sozinho,
+  // em vez de virar link quebrado. Troque e o botão volta.
+  amazonEn: "AMAZON_EN_URL_AQUI",       // Kindle · In Search of the Forgotten Spark
+  amazonPt: "AMAZON_PT_URL_AQUI",       // Kindle · Em Busca da Centelha Perdida
+  priceEn:  "$4.99",
+  pricePt:  "R$ 19,90",
   itch:     "ITCH_URL_AQUI",            // página do Átnor Solo
   author:   "AUTHOR_CENTRAL_URL_AQUI",  // Amazon Author Central
   mailer:   "MAILERLITE_ACTION_AQUI",   // action do formulário MailerLite
+
+  // true = visitante com navegador em português cai no PT na primeira visita.
+  // false = todo mundo entra em inglês, como decidido. A escolha manual sempre vence.
+  autoLang: false,
   heroImg:  "auron-hero-rift.webp",   // imagem de fundo, atrás do vídeo
   heroVideo:"auron-hero.mp4",         // vídeo de fundo do hero; deixe "" para desligar
 
@@ -615,11 +676,18 @@ const I18N = {
     prologuelbl:"Prologue", prologuetitle:"The Silence that was once Everything",
     epiloguelbl:"Epilogue", epiloguetitle:"The Silence that never Left",
     unnumberedNote:"The seat with no numeral. Twelve chapters are counted; this one is lived and left uncounted.",
+    navwheel:"Wheel", navbook:"The Book", navmap:"Map", navplaces:"Places",
+    navmusic:"Sound", navauron:"Auron", navfigures:"Figures", navbuy:"Kindle",
+    skip:"Skip to content",
     bookh:"Saga I",
     covercap:"SAGA I · FIRST EDITION · 2026",
-    buyen:"Read on Kindle",
+    buyprimary:"Read on Kindle",
+    buysecondary:"Read it in Portuguese",
+    priceline:"eBook · Kindle · ",
     tryfree:"Start free",
-    editionnote:"The English edition is on Kindle now. The Portuguese edition follows — join the list and you will hear first.",
+    editionnote:"Both editions are on Kindle now, and free to read on Kindle Unlimited.",
+    aidisclosure:"Cover and interior plates were produced with AI image tools and finished by hand.",
+    soldout:"The Kindle link goes live shortly. Join the list below and it reaches you the same day.",
     maph:"The Realm of Átnor",
     mapp:"The territory Auron crosses, as he himself would have drawn it — had he reached the end of the crossing with a steady enough hand.",
     close:"CLOSE",
@@ -666,11 +734,18 @@ const I18N = {
     prologuelbl:"Prólogo", prologuetitle:"O Silêncio que Antes Era Tudo",
     epiloguelbl:"Epílogo", epiloguetitle:"O Silêncio que Nunca Partiu",
     unnumberedNote:"O assento sem algarismo. Doze capítulos são contados; este é vivido e deixado sem conta.",
+    navwheel:"Roda", navbook:"O Livro", navmap:"Mapa", navplaces:"Lugares",
+    navmusic:"Som", navauron:"Auron", navfigures:"Elenco", navbuy:"Kindle",
+    skip:"Ir para o conteúdo",
     bookh:"Saga I",
     covercap:"SAGA I · PRIMEIRA EDIÇÃO · 2026",
-    buyen:"Ler no Kindle (inglês)",
+    buyprimary:"Ler no Kindle",
+    buysecondary:"Read it in English",
+    priceline:"eBook · Kindle · ",
     tryfree:"Comece de graça",
-    editionnote:"A edição em inglês já está no Kindle. A edição em português vem em seguida — entre na lista e você saberá primeiro.",
+    editionnote:"As duas edições já estão no Kindle, e de graça no Kindle Unlimited.",
+    aidisclosure:"A capa e as placas internas foram produzidas com ferramentas de imagem por IA e finalizadas à mão.",
+    soldout:"O link do Kindle entra no ar em instantes. Entre na lista abaixo e ele chega até você no mesmo dia.",
     maph:"O Reino de Átnor",
     mapp:"O território que Auron atravessa, tal como ele próprio o teria desenhado — se tivesse chegado ao fim da travessia com a mão firme o bastante.",
     close:"FECHAR",
@@ -709,7 +784,17 @@ const I18N = {
 /* =====================================================================
    BUILD
    ===================================================================== */
-let LANG = (new URLSearchParams(location.search).get("lang") === "pt") ? "pt" : "en";
+function isSet(v){ return !!v && !/_AQUI$/.test(v); }
+
+let LANG = (function pickLang(){
+  const q = new URLSearchParams(location.search).get("lang");
+  if (q === "pt" || q === "en") return q;
+  let saved = null;
+  try { saved = localStorage.getItem("atnor-lang"); } catch(e){}
+  if (saved === "pt" || saved === "en") return saved;
+  if (CONFIG.autoLang && (navigator.language || "").toLowerCase().indexOf("pt") === 0) return "pt";
+  return "en";                       // inglês é a língua prime
+})();
 let activeSeat = null;
 
 // hero background
@@ -734,10 +819,20 @@ document.getElementById("heroBg").style.backgroundImage = "url('" + CONFIG.heroI
   }, { once: true });
   v.addEventListener("error", () => v.remove(), { once: true });
 })();
-document.getElementById("buyBtn").href = CONFIG.amazon;
-document.querySelector('[data-i18n="soloc"]').href = CONFIG.itch;
-document.querySelector('[data-i18n="authorc"]').href = CONFIG.author;
-document.getElementById("signupForm").action = CONFIG.mailer;
+/* Um link que ainda é placeholder não vira botão quebrado: some. */
+function wire(id, url){
+  const el = document.getElementById(id);
+  if (isSet(url)) { el.href = url; el.hidden = false; }
+  else { el.removeAttribute("href"); el.hidden = true; }
+}
+wire("soloBtn",   CONFIG.itch);
+wire("authorBtn", CONFIG.author);
+
+if (isSet(CONFIG.mailer)) {
+  document.getElementById("signupForm").action = CONFIG.mailer;
+} else {
+  document.getElementById("join").hidden = true;
+}
 
 // --- wheel ---
 (function buildWheel(){
@@ -771,7 +866,16 @@ document.getElementById("signupForm").action = CONFIG.mailer;
     seat.appendChild(c); seat.appendChild(t);
     seat.addEventListener("click", () => selectSeat(seat, ch));
     seat.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectSeat(seat, ch); }
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectSeat(seat, ch); return; }
+      const step = (e.key === "ArrowRight" || e.key === "ArrowDown") ?  1
+                 : (e.key === "ArrowLeft"  || e.key === "ArrowUp")   ? -1 : 0;
+      if (!step) return;
+      e.preventDefault();
+      const all = Array.prototype.slice.call(g.querySelectorAll(".seat"));
+      const i = all.indexOf(seat);
+      const next = all[(i + step + all.length) % all.length];
+      next.focus();
+      next.dispatchEvent(new KeyboardEvent("keydown", {key:"Enter"}));
     });
     g.appendChild(seat);
   });
@@ -832,6 +936,8 @@ function applyLang(){
   document.querySelectorAll(".langbar button").forEach(b =>
     b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
 
+  applyBuy(T);
+  syncUrl();
   buildRoster2();
   buildPlaces();
   buildAuron();
@@ -839,6 +945,55 @@ function applyLang(){
   activeSeat = null; activeChapter = null;
   document.getElementById("plateBtn").hidden = true;
 }
+/* Botões de compra: a edição da língua atual vem primeiro, a outra em seguida. */
+function applyBuy(T){
+  const isPt   = (LANG === "pt");
+  const mine   = isPt ? CONFIG.amazonPt : CONFIG.amazonEn;
+  const other  = isPt ? CONFIG.amazonEn : CONFIG.amazonPt;
+  const price  = isPt ? CONFIG.pricePt  : CONFIG.priceEn;
+  const oprice = isPt ? CONFIG.priceEn  : CONFIG.pricePt;
+
+  const primary = document.getElementById("buyPrimary");
+  const second  = document.getElementById("buySecondary");
+  const note    = document.getElementById("editionNote");
+  const line    = document.getElementById("priceLine");
+  const navBuy  = document.getElementById("navBuy");
+
+  primary.textContent = T.buyprimary + " · " + price;
+  second.textContent  = T.buysecondary + " · " + oprice;
+  line.textContent    = T.priceline + price;
+
+  if (isSet(mine))  { primary.href = mine;  primary.hidden = false; }
+  else              { primary.removeAttribute("href"); primary.hidden = true; }
+  if (isSet(other)) { second.href  = other; second.hidden  = false; }
+  else              { second.removeAttribute("href"); second.hidden  = true; }
+
+  const nenhum = !isSet(mine) && !isSet(other);
+  note.textContent = nenhum ? T.soldout : T.editionnote;
+  line.hidden = nenhum;
+  navBuy.hidden = nenhum;
+  navBuy.textContent = T.navbuy;
+}
+
+/* Mantém ?lang= na barra de endereço, para o link compartilhado abrir certo. */
+function syncUrl(){
+  try { localStorage.setItem("atnor-lang", LANG); } catch(e){}
+  const u = new URL(location.href);
+  u.searchParams.set("lang", LANG);
+  history.replaceState(null, "", u);
+  const canon = document.querySelector('link[rel="canonical"]');
+  if (canon) canon.href = u.href;
+  const ogu = document.querySelector('meta[property="og:url"]');
+  if (ogu) ogu.content = u.href;
+  const desc = document.querySelector('meta[name="description"]');
+  if (desc) desc.content = I18N[LANG].blurb[0];
+  const ogt = document.querySelector('meta[property="og:title"]');
+  if (ogt) ogt.content = "Átnor — " + I18N[LANG].kicker;
+  const ogd = document.querySelector('meta[property="og:description"]');
+  if (ogd) ogd.content = I18N[LANG].blurb[2];
+  document.getElementById("skipLink").textContent = I18N[LANG].skip;
+}
+
 function buildPlaces(){
   document.getElementById("placesGrid").innerHTML = PLACES.map((p,i) =>
     '<figure class="place' + (p.wide ? ' wide' : '') + '">' +
@@ -890,7 +1045,11 @@ function buildRoster2(){
   }).join("");
 }
 document.querySelectorAll(".langbar button").forEach(b => {
-  b.addEventListener("click", () => { LANG = b.dataset.lang; applyLang(); });
+  b.addEventListener("click", () => {
+    if (LANG === b.dataset.lang) return;
+    LANG = b.dataset.lang;
+    applyLang();
+  });
 });
 
 /* --- player --- */
@@ -960,10 +1119,26 @@ document.querySelector(".scrollcue").addEventListener("click", e => {
 });
 const lb = document.getElementById("lightbox");
 const lbImg = lb.querySelector("img");
+let lbReturn = null;
+
 function openLightbox(src, alt){
+  lbReturn = document.activeElement;
   lbImg.src = src; lbImg.alt = alt || "";
-  lb.classList.add("on"); document.getElementById("lbClose").focus();
+  lb.classList.add("on");
+  document.body.style.overflow = "hidden";
+  document.getElementById("lbClose").focus();
 }
+function closeLightbox(){
+  if (!lb.classList.contains("on")) return;
+  lb.classList.remove("on");
+  document.body.style.overflow = "";
+  if (lbReturn && lbReturn.focus) lbReturn.focus();
+  lbReturn = null;
+}
+/* Enquanto o lightbox está aberto o Tab não escapa para trás dele. */
+lb.addEventListener("keydown", e => {
+  if (e.key === "Tab") { e.preventDefault(); document.getElementById("lbClose").focus(); }
+});
 document.getElementById("mapBtn").addEventListener("click", () => {
   openLightbox("auron-map-atnor.webp", I18N[LANG].maph);
 });
@@ -971,9 +1146,27 @@ document.getElementById("plateBtn").addEventListener("click", () => {
   if (activeChapter && activeChapter.img)
     openLightbox(activeChapter.img, document.getElementById("plateImg").alt);
 });
-document.getElementById("lbClose").addEventListener("click", () => lb.classList.remove("on"));
-lb.addEventListener("click", e => { if (e.target === lb) lb.classList.remove("on"); });
-document.addEventListener("keydown", e => { if (e.key === "Escape") lb.classList.remove("on"); });
+document.getElementById("lbClose").addEventListener("click", closeLightbox);
+lb.addEventListener("click", e => { if (e.target === lb) closeLightbox(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbox(); });
+
+/* Barra de seções: entra depois que o hero sai de cena. */
+(function sectionNav(){
+  const bar  = document.getElementById("sectnav");
+  const hero = document.querySelector(".hero");
+  if (!("IntersectionObserver" in window)) { bar.classList.add("on"); return; }
+  new IntersectionObserver(es => {
+    bar.classList.toggle("on", !es[0].isIntersecting);
+  }, { rootMargin: "-70% 0px 0px 0px" }).observe(hero);
+})();
+
+/* Uma imagem que não existir não deixa ícone quebrado na página. */
+document.addEventListener("error", e => {
+  const img = e.target;
+  if (!img || img.tagName !== "IMG") return;
+  const fig = img.closest("figure");
+  if (fig) fig.hidden = true; else img.hidden = true;
+}, true);
 
 applyLang();
 </script>

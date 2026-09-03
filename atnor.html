@@ -158,7 +158,11 @@ img{max-width:100%;height:auto;display:block}
 
 /* ---------- sections ---------- */
 section{padding:clamp(4.5rem,10vw,8rem) 1.5rem;scroll-margin-top:3.2rem}
-#wheel,#book,#map,#places,#music,#auron,#figures,#solo,#join{scroll-margin-top:3.2rem}
+#wheel,#book,#map,#places,#music,#auron,#scenes,#figures,#solo,#join{scroll-margin-top:3.2rem}
+.scenessec{background:var(--ink-2);text-align:center}
+.scenessec .lede{margin:0 auto}
+.scenessec .auron-grid{grid-template-columns:1fr}
+@media(min-width:700px){.scenessec .auron-grid{grid-template-columns:1fr 1fr}}
 .wrap{max-width:var(--maxw);margin:0 auto}
 .center{text-align:center}
 .center p{margin-left:auto;margin-right:auto}
@@ -348,6 +352,7 @@ footer a{color:var(--parch-dim)}
   <a href="#places"  data-i18n="navplaces">Places</a>
   <a href="#music"   data-i18n="navmusic">Sound</a>
   <a href="#auron"   data-i18n="navauron">Auron</a>
+  <a href="#scenes"  data-i18n="navscenes">Scenes</a>
   <a href="#figures" data-i18n="navfigures">Figures</a>
   <a href="#book" class="navbuy" id="navBuy" data-i18n="navbuy">Kindle</a>
 </nav>
@@ -417,6 +422,7 @@ footer a{color:var(--parch-dim)}
         <div class="ctarow">
           <a class="cta" id="buyPrimary" target="_blank" rel="noopener"></a>
           <a class="cta ghost" id="buySecondary" target="_blank" rel="noopener"></a>
+          <a class="cta ghost" href="saga_capitulo_i.pdf" target="_blank" rel="noopener" data-i18n="chapterlink">Read the first chapter</a>
           <a class="cta ghost" href="#solo" data-i18n="tryfree">Start free</a>
         </div>
         <p class="note" id="editionNote" data-i18n="editionnote">Both editions are on Kindle now, and free to read on Kindle Unlimited.</p>
@@ -432,7 +438,10 @@ footer a{color:var(--parch-dim)}
     <p class="lede center" data-i18n="mapp">The territory Auron crosses, as he himself would have drawn it — had he reached the end of the crossing with a steady enough hand.</p>
     <div style="margin-top:2.6rem">
       <button class="mapframe" type="button" id="mapBtn" aria-label="Open the map of Átnor at full size">
-        <img src="auron-map-atnor.webp" alt="Illustrated map of Átnor" width="1400" height="2073" loading="lazy">
+        <img src="atnor-m.webp"
+             srcset="atnor-m.webp 600w, atnor-g.webp 1024w"
+             sizes="(max-width: 760px) 90vw, 44rem"
+             alt="Illustrated map of Átnor" width="1024" height="1536" loading="lazy">
       </button>
     </div>
   </div>
@@ -440,7 +449,7 @@ footer a{color:var(--parch-dim)}
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Map of Átnor">
   <button class="lbclose" type="button" id="lbClose" data-i18n="close">CLOSE</button>
-  <img src="auron-map-atnor.webp" alt="Illustrated map of Átnor, full size">
+  <img alt="">
 </div>
 
 <!-- ============ PLACES ============ -->
@@ -456,7 +465,7 @@ footer a{color:var(--parch-dim)}
 <section id="music" class="musicsec">
   <div class="wrap">
     <h2 data-i18n="musich">The Sound of Átnor</h2>
-    <p class="lede" data-i18n="musicp">Four movements that follow the crossing, and eight themes that circle it. Nothing plays until you ask it to.</p>
+    <p class="lede" data-i18n="musicp">Four movements that follow the crossing, and seven themes that circle it. Nothing plays until you ask it to.</p>
 
     <div class="player" id="player" hidden>
       <div class="pl-now">
@@ -481,15 +490,19 @@ footer a{color:var(--parch-dim)}
 
 <!-- ============ AURON ============ -->
 <section id="auron" class="auronsec">
-  <figure class="auron-wide">
-    <button type="button" data-fig="auron-cinematico.webp" data-alt="Auron Sollis">
-      <img src="auron-cinematico.webp" alt="Auron Sollis beneath a storm, hands lit" width="1800" height="1005" loading="lazy">
-    </button>
-  </figure>
   <div class="wrap">
     <h2>Auron Sollis</h2>
     <p class="lede center" data-i18n="auronp">Thirty-three. A cartographer. Two names on the Hebrew bands at his wrists, and a light in his palms he did not ask for and cannot put down.</p>
     <div class="auron-grid" id="auronGrid"></div>
+  </div>
+</section>
+
+<!-- ============ CENAS ============ -->
+<section id="scenes" class="scenessec">
+  <div class="wrap">
+    <h2 data-i18n="scenesh">Scenes from the Crossing</h2>
+    <p class="lede center" data-i18n="scenesp">Four moments from inside the narrative, as the illustrated edition renders them.</p>
+    <div class="auron-grid" id="sceneGrid"></div>
   </div>
 </section>
 
@@ -578,21 +591,25 @@ const CONFIG = {
 /* =====================================================================
    CAPÍTULOS — títulos canônicos, extraídos dos EPUBs PT e EN
    ===================================================================== */
+/* Acervo unificado com a galeria: cada arte tem "-m" (média) e "-g" (grande).
+   O celular baixa a leve, o desktop a cheia, o lightbox sempre a cheia. */
 const CHAPTERS = [
-  {n:"I",   en:"The Call of the Inner Rift",        pt:"O Chamado da Fenda Interior",  img:"auron-cap-i.webp"},
-  {n:"II",  en:"The Silence that Listens",          pt:"O Silêncio que Escuta",        img:"auron-cap-ii.webp"},
-  {n:"",    en:"The Song that Makes",               pt:"O Canto que Faz",              img:"auron-cap-iib.webp", unnumbered:true, label:"II-B"},
-  {n:"III", en:"The Map of Archetypes",             pt:"O Mapa dos Arquétipos",        img:"auron-cap-iii.webp"},
-  {n:"IV",  en:"The Flame that Burns Illusions",    pt:"A Chama que Queima Ilusões",   img:"auron-cap-iv.webp"},
-  {n:"V",   en:"The Dream that Dreams the Dreamer", pt:"O Sonho que Sonha o Sonhador", img:"auron-cap-v.webp"},
-  {n:"VI",  en:"The Sacred Game",                   pt:"A Brincadeira Sagrada",        img:"auron-cap-vi.webp"},
-  {n:"VII", en:"The Mountain that Does Not Speak",  pt:"A Montanha que Não Fala",      img:"auron-cap-vii.webp"},
-  {n:"VIII",en:"The Divine Atom in All",            pt:"O Átomo Divino em Todos",      img:"auron-cap-viii.webp"},
-  {n:"IX",  en:"The Anonymous Service",             pt:"O Serviço Anônimo",            img:"auron-cap-ix.webp"},
-  {n:"X",   en:"The Word that Was Missing",         pt:"A Palavra que Faltava",        img:"auron-cap-x.webp"},
-  {n:"XI",  en:"The Awakening of the Serpent",      pt:"O Despertar da Serpente",      img:"auron-cap-xi.webp"},
-  {n:"XII", en:"The Return to Silence",             pt:"O Retorno ao Silêncio",        img:"auron-cap-xii.webp"}
+  {n:"I",   en:"The Call of the Inner Rift",        pt:"O Chamado da Fenda Interior",  img:"cap-01"},
+  {n:"II",  en:"The Silence that Listens",          pt:"O Silêncio que Escuta",        img:"cap-02"},
+  {n:"",    en:"The Song that Makes",               pt:"O Canto que Faz",              img:"cap-02b", unnumbered:true, label:"II-B"},
+  {n:"III", en:"The Map of Archetypes",             pt:"O Mapa dos Arquétipos",        img:"cap-03"},
+  {n:"IV",  en:"The Flame that Burns Illusions",    pt:"A Chama que Queima Ilusões",   img:"cap-04"},
+  {n:"V",   en:"The Dream that Dreams the Dreamer", pt:"O Sonho que Sonha o Sonhador", img:"cap-05"},
+  {n:"VI",  en:"The Sacred Game",                   pt:"A Brincadeira Sagrada",        img:"cap-06"},
+  {n:"VII", en:"The Mountain that Does Not Speak",  pt:"A Montanha que Não Fala",      img:"cap-07"},
+  {n:"VIII",en:"The Divine Atom in All",            pt:"O Átomo Divino em Todos",      img:"cap-08"},
+  {n:"IX",  en:"The Anonymous Service",             pt:"O Serviço Anônimo",            img:"cap-09"},
+  {n:"X",   en:"The Word that Was Missing",         pt:"A Palavra que Faltava",        img:"cap-10"},
+  {n:"XI",  en:"The Awakening of the Serpent",      pt:"O Despertar da Serpente",      img:"cap-11"},
+  {n:"XII", en:"The Return to Silence",             pt:"O Retorno ao Silêncio",        img:"cap-12"}
 ];
+const med = b => b + "-m.webp";
+const gra = b => b + "-g.webp";
 
 /* =====================================================================
    TRILHA — títulos como o Rfelipe os nomeou
@@ -609,7 +626,6 @@ const THEMES = [
   {f:"auron-tema-fim-e-um-lugar.mp3",     t:"O Fim É Um Lugar",      d:"0:31"},
   {f:"auron-tema-oceano-que-pulsa.mp3",   t:"O Oceano Que Pulsa",    d:"0:31"},
   {f:"auron-tema-pulso-de-um-mar.mp3",    t:"O Pulso de um Mar",     d:"0:31"},
-  {f:"auron-tema-onde-a-saga-se-cala.mp3",t:"Onde a Saga se Cala",   d:"0:29"},
   {f:"auron-tema-preco-de-florescer.mp3", t:"Preço de Florescer",    d:"0:31"},
   {f:"auron-tema-where-giants-tread.mp3", t:"Where Giants Tread",    d:"0:31"}
 ];
@@ -678,7 +694,10 @@ const I18N = {
     epiloguelbl:"Epilogue", epiloguetitle:"The Silence that never Left",
     unnumberedNote:"The seat with no numeral. Twelve chapters are counted; this one is lived and left uncounted.",
     navwheel:"Wheel", navbook:"The Book", navmap:"Map", navplaces:"Places",
-    navmusic:"Sound", navauron:"Auron", navfigures:"Figures", navbuy:"Kindle",
+    navmusic:"Sound", navauron:"Auron", navscenes:"Scenes", navfigures:"Figures", navbuy:"Kindle",
+    scenesh:"Scenes from the Crossing",
+    scenesp:"Four moments from inside the narrative, as the illustrated edition renders them.",
+    chapterlink:"Read the first chapter",
     skip:"Skip to content",
     bookh:"Saga I",
     covercap:"SAGA I · FIRST EDITION · 2026",
@@ -694,7 +713,7 @@ const I18N = {
     close:"CLOSE",
     auronp:"Thirty-three. A cartographer. Two names on the Hebrew bands at his wrists, and a light in his palms he did not ask for and cannot put down.",
     musich:"The Sound of Átnor",
-    musicp:"Four movements that follow the crossing, and eight themes that circle it. Nothing plays until you ask it to.",
+    musicp:"Four movements that follow the crossing, and seven themes that circle it. Nothing plays until you ask it to.",
     suiteh:"The Crossing, in four movements",
     themesh:"Themes",
     themesnote:"The themes are thirty-second sketches.",
@@ -736,7 +755,10 @@ const I18N = {
     epiloguelbl:"Epílogo", epiloguetitle:"O Silêncio que Nunca Partiu",
     unnumberedNote:"O assento sem algarismo. Doze capítulos são contados; este é vivido e deixado sem conta.",
     navwheel:"Roda", navbook:"O Livro", navmap:"Mapa", navplaces:"Lugares",
-    navmusic:"Som", navauron:"Auron", navfigures:"Elenco", navbuy:"Kindle",
+    navmusic:"Som", navauron:"Auron", navscenes:"Cenas", navfigures:"Elenco", navbuy:"Kindle",
+    scenesh:"Cenas da Travessia",
+    scenesp:"Quatro momentos do interior da narrativa, como a edição ilustrada os traz.",
+    chapterlink:"Ler o primeiro capítulo",
     skip:"Ir para o conteúdo",
     bookh:"Saga I",
     covercap:"SAGA I · PRIMEIRA EDIÇÃO · 2026",
@@ -752,7 +774,7 @@ const I18N = {
     close:"FECHAR",
     auronp:"Trinta e três anos. Cartógrafo. Dois nomes nas faixas hebraicas dos punhos, e uma luz nas palmas que ele não pediu e não consegue largar.",
     musich:"O Som de Átnor",
-    musicp:"Quatro movimentos que acompanham a travessia, e oito temas que giram em torno dela. Nada toca antes de você pedir.",
+    musicp:"Quatro movimentos que acompanham a travessia, e sete temas que giram em torno dela. Nada toca antes de você pedir.",
     suiteh:"A travessia, em quatro movimentos",
     themesh:"Temas",
     themesnote:"Os temas são esboços de trinta segundos.",
@@ -902,7 +924,9 @@ function selectSeat(el, ch){
   const img = document.getElementById("plateImg");
   if (ch.img) {
     img.onerror = () => { btn.hidden = true; };
-    img.src = ch.img;
+    img.srcset = med(ch.img) + " 480w, " + gra(ch.img) + " 1024w";
+    img.sizes  = "(max-width: 900px) 90vw, 17rem";
+    img.src = gra(ch.img);
     img.alt = (LANG === "pt" ? "Placa do " : "Plate for ") +
               (ch.unnumbered ? "Capítulo II-B" : (LANG === "pt" ? "Capítulo " : "Chapter ") + ch.n);
     btn.hidden = false;
@@ -1008,7 +1032,7 @@ function buildPlaces(){
   document.getElementById("placesGrid").innerHTML = PLACES.map((p,i) =>
     '<figure class="place' + (p.wide ? ' wide' : '') + '">' +
       '<button type="button" data-place="' + i + '">' +
-        '<img src="' + p.img + '" alt="' + p[LANG] + '" loading="lazy">' +
+        '<img src="' + p.img + '" alt="' + p[LANG] + '" width="1000" height="1490" loading="lazy">' +
       '</button>' +
       '<figcaption><h4>' + p[LANG] + '</h4><p>' + p[LANG === "pt" ? "ptde" : "ende"] + '</p></figcaption>' +
     '</figure>').join("");
@@ -1021,22 +1045,38 @@ function buildPlaces(){
 }
 
 const AURON_ART = [
-  {img:"auron-retrato.webp",    en:"THE CARTOGRAPHER", pt:"O CARTÓGRAFO"},
-  {img:"auron-limiar.webp",     en:"THE THRESHOLD",     pt:"O LIMIAR"},
-  {img:"auron-cap-i.webp",      en:"THE CALL",          pt:"O CHAMADO"},
-  {img:"auron-descanso.webp",   en:"THE REST",           pt:"O DESCANSO"},
-  {img:"auron-de-costas.webp",  en:"THE OPEN ROAD",      pt:"O CAMINHO ABERTO"},
-  {img:"auron-turnaround.webp", en:"FRONT, SIDE AND BACK", pt:"FRENTE, PERFIL E COSTAS", span:true}
+  {img:"auron-sollis", w:1024, h:1536, en:"THE CARTOGRAPHER", pt:"O CARTÓGRAFO"},
+  {img:"cap-01",       w:1024, h:1600, en:"THE CALL",         pt:"O CHAMADO"},
+  {plain:"auron-turnaround.webp", w:1400, h:933,
+   en:"FRONT, SIDE AND BACK", pt:"FRENTE, PERFIL E COSTAS", span:true}
 ];
 
+/* Cenas do interior da narrativa — as mesmas quatro lâminas da galeria. */
+const SCENES = [
+  {img:"cena-03-154", en:"CHAPTER III", pt:"CAPÍTULO III"},
+  {img:"cena-03-194", en:"CHAPTER III", pt:"CAPÍTULO III"},
+  {img:"cena-05-262", en:"CHAPTER V",   pt:"CAPÍTULO V"},
+  {img:"cena-07-350", en:"CHAPTER VII", pt:"CAPÍTULO VII"}
+];
+
+function figHtml(a){
+  const full = a.plain || gra(a.img);
+  const tag  = a.plain
+    ? '<img src="' + a.plain + '"'
+    : '<img src="' + med(a.img) + '" srcset="' + med(a.img) + ' 560w, ' + gra(a.img) + ' 1280w"' +
+      ' sizes="(max-width: 700px) 90vw, 22rem"';
+  return '<figure' + (a.span ? ' class="span2"' : '') + '>' +
+    '<button type="button" data-fig="' + full + '" data-alt="' + a[LANG] + '">' +
+      tag + ' alt="' + a[LANG] + '" width="' + a.w + '" height="' + a.h + '" loading="lazy">' +
+    '</button>' +
+    '<figcaption>' + a[LANG] + '</figcaption>' +
+  '</figure>';
+}
+
 function buildAuron(){
-  document.getElementById("auronGrid").innerHTML = AURON_ART.map(a =>
-    '<figure' + (a.span ? ' class="span2"' : '') + '>' +
-      '<button type="button" data-fig="' + a.img + '" data-alt="' + a[LANG] + '">' +
-        '<img src="' + a.img + '" alt="' + a[LANG] + '" loading="lazy">' +
-      '</button>' +
-      '<figcaption>' + a[LANG] + '</figcaption>' +
-    '</figure>').join("");
+  document.getElementById("auronGrid").innerHTML = AURON_ART.map(figHtml).join("");
+  document.getElementById("sceneGrid").innerHTML =
+    SCENES.map(x => figHtml(Object.assign({w:1280,h:1920}, x))).join("");
   bindFigs();
 }
 
@@ -1103,6 +1143,12 @@ function buildTracks(){
   });
 }
 
+audio.addEventListener("error", () => {
+  const cur = document.querySelector('[aria-current="true"]');
+  if (cur) { cur.closest("li").hidden = true; }
+  player.hidden = true;
+  console.warn("Átnor: faixa não encontrada —", audio.getAttribute("src"));
+});
 audio.addEventListener("timeupdate", () => {
   if (audio.duration) plFill.style.width = (audio.currentTime / audio.duration * 100) + "%";
   plTime.textContent = fmt(audio.currentTime);
@@ -1150,11 +1196,11 @@ lb.addEventListener("keydown", e => {
   if (e.key === "Tab") { e.preventDefault(); document.getElementById("lbClose").focus(); }
 });
 document.getElementById("mapBtn").addEventListener("click", () => {
-  openLightbox("auron-map-atnor.webp", I18N[LANG].maph);
+  openLightbox("auron-map-atnor.webp", I18N[LANG].maph);  // 1400px, a maior do acervo
 });
 document.getElementById("plateBtn").addEventListener("click", () => {
   if (activeChapter && activeChapter.img)
-    openLightbox(activeChapter.img, document.getElementById("plateImg").alt);
+    openLightbox(gra(activeChapter.img), document.getElementById("plateImg").alt);
 });
 document.getElementById("lbClose").addEventListener("click", closeLightbox);
 lb.addEventListener("click", e => { if (e.target === lb) closeLightbox(); });
@@ -1174,9 +1220,12 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbo
 document.addEventListener("error", e => {
   const img = e.target;
   if (!img || img.tagName !== "IMG") return;
+  const src = img.getAttribute("src");
+  if (!src) return;                       // src vazio não é falha, é estado inicial
+  if (img.closest(".lightbox")) return;   // o lightbox é reutilizado: nunca esconder
   const box = img.closest("figure, picture, .plate, .mapframe, .rosterbanner");
   if (box) box.hidden = true; else img.hidden = true;
-  console.warn("Átnor: imagem não encontrada no repositório —", img.getAttribute("src"));
+  console.warn("Átnor: imagem não encontrada no repositório —", src);
 }, true);
 
 applyLang();

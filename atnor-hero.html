@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Saga of the Inner Rift — Átnor</title>
+
+<!-- Cinzel = display canônico da saga (600). EB Garamond = prosa. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  /* ---- PALETA CANÔNICA ---------------------------------------------- */
+  --breu:        #0a0603;   /* preto com viés quente, não cinza-azulado  */
+  --breu-fundo:  #060402;
+  --ouro-claro:  #f7e3ae;   /* topo do gradiente do título               */
+  --ouro:        #d9a441;   /* ouro núcleo                               */
+  --ouro-fundo:  #a86a24;   /* base do gradiente, puxando para brasa     */
+  --brasa:       #ff9a2e;   /* incandescência da fenda                   */
+  --branco-quente:#fff4dd;  /* miolo da fenda, ponto mais quente         */
+  --sepia:       #361f0e;   /* sépia da prosa (RGB 54,31,14)             */
+  --veu:         rgba(247,227,174,.62); /* texto de apoio                */
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--breu-fundo);}
+
+/* ===================================================================== *
+ *  HERO
+ *  Para trocar a fenda desenhada pelo SEU frame renderizado:
+ *  descomente .hero__media abaixo e aponte para a imagem SEM TEXTO
+ *  (o frame de cima ao centro do seu grid, ou o cósmico do canto).
+ * ===================================================================== */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:
+    radial-gradient(58% 46% at 50% 44%, rgba(217,164,65,.16) 0%, transparent 68%),
+    var(--breu);
+  isolation:isolate;
+}
+
+/* --- SLOT DA IMAGEM (opcional) --------------------------------------- */
+.hero__media{
+  position:absolute; inset:0; z-index:0;
+  background:center/cover no-repeat;
+  /* background-image:url('fenda-limpa.webp'); */
+  display:none;                  /* mude para block ao usar a imagem     */
+}
+/* Correção de temperatura: puxa o nebular azul para âmbar SEM re-render. */
+.hero__media::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg,#c47a1e 0%,#8a4d12 100%);
+  mix-blend-mode:color;
+  opacity:.72;
+}
+
+/* --- FENDA DESENHADA (padrão) ---------------------------------------- */
+.rift{
+  position:absolute; z-index:1;
+  top:-6%; height:112%;
+  left:50%; transform:translateX(-50%);
+  width:min(30vw,340px);
+  pointer-events:none;
+}
+.rift svg{width:100%;height:100%;display:block;}
+
+/* Respiração da fenda: um único movimento, lento, quase imperceptível.  */
+@keyframes brasa{
+  0%,100%{opacity:.90;}
+  50%    {opacity:1;}
+}
+.rift__nucleo{animation:brasa 7.5s ease-in-out infinite;}
+@media (prefers-reduced-motion:reduce){
+  .rift__nucleo{animation:none;}
+}
+
+/* --- BLOCO DO TÍTULO -------------------------------------------------- */
+.lockup{
+  position:relative; z-index:2;
+  text-align:center;
+  padding:0 6vw;
+  max-width:1100px;
+}
+
+/* Coleção. Fica acima do título porque é o nome da série no registro
+   bibliográfico — informação, não etiqueta decorativa.                   */
+.lockup__colecao{
+  font-family:'Cinzel',serif;
+  font-weight:500;
+  font-size:clamp(.72rem,1.55vw,1.05rem);
+  letter-spacing:.42em;
+  text-indent:.42em;          /* compensa o tracking e recentra de fato  */
+  color:var(--veu);
+  margin:0 0 .85em;
+}
+
+/* Título. A fenda passa entre as duas palavras: o vão é intencional. */
+.lockup__titulo{
+  font-family:'Cinzel',serif;
+  font-weight:600;
+  font-size:clamp(2.35rem,8.4vw,6.4rem);
+  line-height:.98;
+  letter-spacing:.045em;
+  margin:0;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:0 clamp(.9rem,7vw,5.5rem);   /* o vão por onde a fenda atravessa  */
+  background:linear-gradient(178deg,var(--ouro-claro) 6%,var(--ouro) 46%,var(--ouro-fundo) 100%);
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+  filter:drop-shadow(0 0 26px rgba(217,164,65,.30));
+}
+
+/* Filete + volume. Aqui é onde a arte original perdia em miniatura:
+   peso 600 e tracking maior fazem a linha sobreviver a 320px.           */
+.lockup__volume{
+  font-family:'Cinzel',serif;
+  font-weight:600;
+  font-size:clamp(.78rem,1.85vw,1.22rem);
+  letter-spacing:.26em;
+  text-indent:.26em;
+  color:var(--ouro-claro);
+  margin:1.15em auto 0;
+  max-width:34ch;
+  position:relative;
+  padding-top:1.15em;
+}
+.lockup__volume::before{
+  content:''; position:absolute; top:0; left:50%;
+  transform:translateX(-50%);
+  width:min(46%,320px); height:1px;
+  background:linear-gradient(90deg,transparent,var(--ouro) 50%,transparent);
+}
+
+/* Convite. Só depois da imersão — o site não vende no primeiro fôlego.  */
+.lockup__convite{
+  font-family:'EB Garamond',serif;
+  font-size:clamp(1rem,1.5vw,1.16rem);
+  font-style:italic;
+  line-height:1.65;
+  color:var(--veu);
+  max-width:38ch;
+  margin:2.6em auto 0;
+}
+
+/* --- TROCA DE IDIOMA -------------------------------------------------- */
+.idioma{
+  position:absolute; z-index:3;
+  top:clamp(1.1rem,3vw,2rem); right:clamp(1.1rem,3vw,2.4rem);
+  display:flex; align-items:center; gap:.55rem;
+  font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.18em;
+}
+.idioma button{
+  background:none; border:0; padding:.4rem .3rem; cursor:pointer;
+  font:inherit; color:var(--veu);
+  border-bottom:1px solid transparent;
+  transition:color .25s ease,border-color .25s ease;
+}
+.idioma button[aria-pressed="true"]{
+  color:var(--ouro-claro); border-bottom-color:var(--ouro);
+}
+.idioma button:focus-visible{
+  outline:2px solid var(--ouro); outline-offset:3px; border-radius:2px;
+}
+.idioma span{color:rgba(247,227,174,.28);}
+
+/* --- MOBILE ----------------------------------------------------------- */
+/* Em tela estreita as duas palavras empilham; a fenda deixa de separá-las
+   e passa a correr por trás. Fica legível, e a fenda não corta letra.    */
+@media (max-width:560px){
+  .lockup__titulo{gap:0; flex-direction:column; line-height:1.02;}
+  .rift{width:62vw; opacity:.5;}
+  .lockup__volume{letter-spacing:.2em; text-indent:.2em;}
+}
+
+/* Só o idioma ativo aparece. */
+[data-idioma="en"] [lang="pt-BR"],
+[data-idioma="pt"] [lang="en"]{display:none;}
+</style>
+</head>
+
+<body data-idioma="en">
+
+<header class="hero">
+
+  <div class="hero__media" aria-hidden="true"></div>
+
+  <!-- A fenda. Vetorial: nítida em qualquer tela, pesa ~2 KB. -->
+  <div class="rift" aria-hidden="true">
+    <svg viewBox="0 0 200 1000" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="g-fenda" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="var(--ouro-fundo)" stop-opacity="0"/>
+          <stop offset="18%"  stop-color="var(--ouro)"        stop-opacity=".75"/>
+          <stop offset="46%"  stop-color="var(--branco-quente)"/>
+          <stop offset="58%"  stop-color="var(--brasa)"/>
+          <stop offset="86%"  stop-color="var(--ouro)"        stop-opacity=".65"/>
+          <stop offset="100%" stop-color="var(--ouro-fundo)"  stop-opacity="0"/>
+        </linearGradient>
+        <filter id="halo" x="-160%" y="-30%" width="420%" height="160%">
+          <feGaussianBlur stdDeviation="16"/>
+        </filter>
+        <filter id="halo-largo" x="-260%" y="-30%" width="620%" height="160%">
+          <feGaussianBlur stdDeviation="42"/>
+        </filter>
+      </defs>
+
+      <!-- traçado único, três passadas: halo largo, halo, núcleo -->
+      <g id="tracado">
+        <path id="linha" fill="none" stroke-linecap="round" stroke-linejoin="round"
+          d="M100,0 L104,58 L96,112 L107,168 L93,224 L103,278 L97,332
+             L108,392 L92,448 L104,506 L95,562 L106,620 L94,676
+             L103,730 L96,786 L105,842 L97,898 L102,952 L100,1000"/>
+      </g>
+
+      <use href="#linha" stroke="url(#g-fenda)" stroke-width="26" opacity=".30" filter="url(#halo-largo)"/>
+      <use href="#linha" stroke="url(#g-fenda)" stroke-width="9"  opacity=".70" filter="url(#halo)"/>
+      <use href="#linha" class="rift__nucleo" stroke="url(#g-fenda)" stroke-width="2.4"/>
+    </svg>
+  </div>
+
+  <nav class="idioma" aria-label="Language">
+    <button type="button" data-set="en" aria-pressed="true">EN</button>
+    <span>/</span>
+    <button type="button" data-set="pt" aria-pressed="false">PT</button>
+  </nav>
+
+  <div class="lockup">
+
+    <p class="lockup__colecao">
+      <span lang="en">The Saga of the</span>
+      <span lang="pt-BR">A Saga da</span>
+    </p>
+
+    <h1 class="lockup__titulo">
+      <span lang="en"><span>Inner</span><span>Rift</span></span>
+      <span lang="pt-BR"><span>Fenda</span><span>Interior</span></span>
+    </h1>
+
+    <p class="lockup__volume">
+      <span lang="en">In Search of the Forgotten Spark</span>
+      <span lang="pt-BR">Em Busca da Centelha Perdida</span>
+    </p>
+
+    <p class="lockup__convite">
+      <span lang="en">A cartographer is asked to map the one territory no chart has ever held.</span>
+      <span lang="pt-BR">Um cartógrafo é chamado a mapear o único território que nenhuma carta jamais conteve.</span>
+    </p>
+
+  </div>
+</header>
+
+<script>
+/* O <h1> tem os dois idiomas; o CSS esconde o inativo. O toggle troca
+   data-idioma no <body> e o lang do documento, para leitores de tela. */
+document.querySelectorAll('.idioma button').forEach(function(b){
+  b.addEventListener('click', function(){
+    var alvo = b.dataset.set;
+    document.body.dataset.idioma = alvo;
+    document.documentElement.lang = (alvo === 'pt') ? 'pt-BR' : 'en';
+    document.querySelectorAll('.idioma button').forEach(function(o){
+      o.setAttribute('aria-pressed', String(o.dataset.set === alvo));
+    });
+  });
+});
+</script>
+
+</body>
+</html>

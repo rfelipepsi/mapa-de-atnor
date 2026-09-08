@@ -547,7 +547,7 @@ footer a{color:var(--parch-dim)}
     <p class="lede" data-i18n="joinp">Leave your email and the illustrated map of Átnor arrives at full resolution, along with the first chapter. You will also be the first to know when the Portuguese edition and Book Two are ready.</p>
     <form class="signupform" id="signupForm" method="post" target="_blank">
       <label for="emailField" class="visually-hidden" data-i18n="emaillbl">Email address</label>
-      <input id="emailField" type="email" name="fields[email]" required placeholder="you@example.com" data-i18n-ph="emailph">
+      <input id="emailField" type="email" name="email_address" required placeholder="you@example.com" data-i18n-ph="emailph">
       <button type="submit" data-i18n="joinc">Send me the map</button>
     </form>
   </div>
@@ -576,7 +576,7 @@ const CONFIG = {
   pricePt:  "R$ 19,90",
   itch:     "ITCH_URL_AQUI",            // página do Átnor Solo
   author:   "https://www.amazon.com/author/liorleal",  // Amazon Author Central
-  mailer:   "MAILERLITE_ACTION_AQUI",   // action do formulário MailerLite
+  mailer:   "https://app.kit.com/forms/9895981/subscriptions",  // action do formulário Kit
 
   // true = visitante com navegador em português cai no PT na primeira visita.
   // false = todo mundo entra em inglês, como decidido. A escolha manual sempre vence.

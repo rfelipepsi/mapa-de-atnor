@@ -136,6 +136,7 @@
   .done{display:none;text-align:center;padding:1.5rem 0}
   .done.show{display:block;animation:fade .5s ease both}
   .done .mark{font-family:'Cinzel',serif;color:var(--gold);font-size:1.1rem;letter-spacing:.24em;text-indent:.24em;margin-bottom:.85rem}
+  .done .strong{font-weight:500}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
   /* ---- passagem para a galeria ---- */
@@ -226,23 +227,24 @@
   </section>
 
   <section class="capture">
-    <!-- Formulário conectado ao MailerLite (conta 2597145). Para trocar de
-         serviço, substitua o action e confira o name do campo de e-mail. -->
-    <form id="form" action="https://assets.mailerlite.com/jsonp/2597145/forms/196833172268255113/subscribe" method="post" target="_blank" novalidate>
+    <!-- Formulário conectado ao Kit (ex-ConvertKit), conta lior-leal, form 9895981,
+         uid ea41461a44. O envio vai para um iframe oculto para o leitor não sair
+         da página. Se um dia trocar de serviço: ajuste o action, o name do campo
+         de e-mail e o texto do bloco #done, que hoje pressupõe double opt-in. -->
+    <form id="form" action="https://app.kit.com/forms/9895981/subscriptions" method="post" target="kit-sink" novalidate>
       <label for="email">Onde envio o mapa</label>
       <div class="field">
-        <input id="email" type="email" name="fields[email]" placeholder="seu@email.com" autocomplete="email" required>
+        <input id="email" type="email" name="email_address" placeholder="seu@email.com" autocomplete="email" required>
         <button type="submit">Receber o mapa</button>
       </div>
-      <input type="hidden" name="ml-submit" value="1">
-      <input type="hidden" name="anticsrf" value="true">
       <p class="error" id="err">Confira o endereço — parece faltar alguma coisa.</p>
       <p class="fineprint">Só o mapa, o capítulo e o aviso do Livro II. Nada mais. Você sai da lista quando quiser.</p>
     </form>
 
     <div class="done" id="done">
       <p class="mark">◆</p>
-      <p>O mapa está a caminho. Se não chegar em alguns minutos, olhe a caixa de promoções — cartógrafos costumam cair lá.</p>
+      <p><span class="strong">Falta um passo.</span> Enviei um e-mail para você agora — abra e confirme, e o mapa chega junto com a confirmação.</p>
+      <p class="fineprint">Se não aparecer em alguns minutos, olhe no spam ou na caixa de promoções. Cartógrafos costumam cair lá.</p>
     </div>
   </section>
 
@@ -262,6 +264,9 @@
 
 </main>
 
+<!-- destino oculto do POST: evita abrir aba nova e evita bloqueio de CORS -->
+<iframe name="kit-sink" title="Envio de inscrição" style="display:none;width:0;height:0;border:0" aria-hidden="true"></iframe>
+
 <script>
   const form = document.getElementById('form');
   const done = document.getElementById('done');
@@ -273,7 +278,7 @@
   form.addEventListener('submit', (e) => {
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value.trim());
     if (!valid) { e.preventDefault(); err.classList.add('show'); mail.focus(); return; }
-    // Envia ao MailerLite numa aba nova e mostra a confirmação aqui.
+    // O POST segue para o Kit dentro do iframe oculto; aqui só trocamos a tela.
     setTimeout(() => { form.style.display = 'none'; done.classList.add('show'); }, 150);
   });
 </script>

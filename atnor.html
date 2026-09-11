@@ -12,6 +12,8 @@
 <link rel="alternate" hreflang="x-default" href="https://rfelipepsi.github.io/mapa-de-atnor/atnor.html">
 
 <meta property="og:type" content="book">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="pt_BR">
 <meta property="og:title" content="Átnor — The Saga of the Inner Rift">
 <meta property="og:description" content="Guardians are waiting for him, each with a lesson he never asked for. And not one of them introduces himself as an enemy.">
 <meta property="og:image" content="https://rfelipepsi.github.io/mapa-de-atnor/auron-og.jpg">
@@ -545,7 +547,7 @@ footer a{color:var(--parch-dim)}
   <div class="wrap center">
     <h2 data-i18n="joinh">The map, before anyone else</h2>
     <p class="lede" data-i18n="joinp">Leave your email and the illustrated map of Átnor arrives at full resolution, along with the first chapter. You will also be the first to know when the Portuguese edition and Book Two are ready.</p>
-    <form class="signupform" id="signupForm" method="post" target="_blank">
+    <form class="signupform" id="signupForm" method="post" target="kit-sink">
       <label for="emailField" class="visually-hidden" data-i18n="emaillbl">Email address</label>
       <input id="emailField" type="email" name="email_address" required placeholder="you@example.com" data-i18n-ph="emailph">
       <button type="submit" data-i18n="joinc">Send me the map</button>
@@ -556,7 +558,7 @@ footer a{color:var(--parch-dim)}
 <footer>
   <p data-i18n="footline">Átnor · The Saga of the Inner Rift · Lior Leal</p>
   <p class="biblio">
-    ISBN 978-65-02-32392-2 &nbsp;·&nbsp; ISNI 0000 0005 3083 3887 &nbsp;·&nbsp; CIP 26-390087.0<br>
+    ISBN 978-65-02-32392-2 &nbsp;·&nbsp; ISNI 0000 0005 3083 3887 &nbsp;·&nbsp; CIP 26-390087.1<br>
     <a href="index.html" data-i18n="backhome">Home</a> &nbsp;·&nbsp;
     <a href="galeria.html" data-i18n="gallerylink">Gallery</a><br>
     <span data-i18n="aidisclosure">Cover and interior plates were produced with AI image tools and finished by hand.</span>
@@ -579,8 +581,9 @@ const CONFIG = {
   mailer:   "https://app.kit.com/forms/9895981/subscriptions",  // action do formulário Kit
 
   // true = visitante com navegador em português cai no PT na primeira visita.
-  // false = todo mundo entra em inglês, como decidido. A escolha manual sempre vence.
-  autoLang: false,
+  // true = navegador em português cai no PT; o resto do mundo entra em inglês.
+  // A escolha manual (botão PT/EN ou ?lang=) sempre vence e fica salva.
+  autoLang: true,
   heroImg:  "auron-hero-rift.webp",   // imagem de fundo, atrás do vídeo
   heroVideo:"auron-hero.mp4",         // vídeo de fundo do hero; deixe "" para desligar
 
@@ -1230,5 +1233,8 @@ document.addEventListener("error", e => {
 
 applyLang();
 </script>
+
+<!-- destino oculto do POST do Kit: o leitor não sai da página -->
+<iframe name="kit-sink" title="Envio de inscrição" style="display:none;width:0;height:0;border:0" aria-hidden="true"></iframe>
 </body>
 </html>

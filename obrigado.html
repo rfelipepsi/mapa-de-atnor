@@ -167,6 +167,18 @@
   .file .get{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-top:.5rem}
   .file:hover strong{color:var(--gold)}
   .file:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+  .enter{margin-top:clamp(2.5rem,7vw,3.25rem);padding-top:clamp(2rem,6vw,2.6rem);border-top:1px solid var(--rule);text-align:center}
+  .enter a{
+    display:inline-block;text-decoration:none;
+    font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;text-indent:.2em;
+    text-transform:uppercase;color:var(--parchment);background:var(--gold);
+    border:1px solid var(--gold);border-radius:2px;padding:.95rem 1.7rem;
+    transition:background .2s,transform .12s;
+  }
+  .enter a:hover{background:#83591B}
+  .enter a:active{transform:translateY(1px)}
+  .enter a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .enter .note{margin-top:.8rem;font-size:.86em;color:var(--ink-soft);font-style:italic}
 </style>
 </head>
 <body>
@@ -230,6 +242,10 @@
       <span class="sub">Os guardi&otilde;es, os tentadores e as treze l&acirc;minas dos cap&iacute;tulos.</span>
     </span>
   </a>
+
+  <section class="enter">
+    <a href="atnor.html?lang=pt">Entrar em &Aacute;tnor</a>
+  </section>
 
   <footer>
     <p class="name">Lior Leal</p>
